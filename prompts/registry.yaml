@@ -1,0 +1,22 @@
+# Versioned prompt artifacts.  The registry is the source of truth for what was
+# used on a run; every response records these version strings.
+variants:
+  v1:
+    description: "Single-pass baseline. One retrieval query, draft from the top passage."
+    tasks:
+      intake: intake/v1.md
+      research: research/v1.md
+      draft: draft/v1.md
+      verify: verify/v1.md
+      route: route/v1.md
+  v2:
+    description: "Qualifier-aware: second retrieval pass for provisos, definitions, repeal and thresholds; verification loop."
+    tasks:
+      intake: intake/v2.md
+      research: research/v2.md
+      draft: draft/v2.md
+      verify: verify/v2.md
+      route: route/v2.md
+changelog:
+  v1: "Initial baseline."
+  v2: "Added explicit proviso/exception second pass, in-force checks, conflict handling, and injection delimiting."
