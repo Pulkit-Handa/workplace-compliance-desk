@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Workplace Compliance Advisory Desk</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --bg-soft: #111830;
+    --panel: #151d38;
+    --panel-2: #1b2547;
+    --line: #2a3763;
+    --text: #e8ecf8;
+    --muted: #9aa8c7;
+    --accent: #6ea8fe;
+    --accent-2: #8b5cf6;
+    --good: #34d399;
+    --warn: #fbbf24;
+    --bad: #f87171;
+    --radius: 14px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background:
+      radial-gradient(1200px 700px at 85% -10%, rgba(110,168,254,.16), transparent 60%),
+      radial-gradient(900px 600px at 5% 110%, rgba(139,92,246,.14), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  a { color: var(--accent); }
+  header {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 22px 28px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(11,16,32,.72);
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+  .logo {
+    width: 42px; height: 42px; border-radius: 12px; flex: 0 0 auto;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center; font-weight: 800; font-size: 19px; color: #071025;
+    box-shadow: 0 8px 26px rgba(110,168,254,.32);
+  }
+  h1 { font-size: 18px; margin: 0; letter-spacing: .2px; }
+  .sub { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+  .header-right { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 1px solid var(--line); background: var(--panel);
+    padding: 7px 11px; border-radius: 999px; font-size: 12px; color: var(--muted);
+    white-space: nowrap;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .dot.ok { background: var(--good); box-shadow: 0 0 0 4px rgba(52,211,153,.14); }
+  .dot.bad { background: var(--bad); box-shadow: 0 0 0 4px rgba(248,113,113,.14); }
+  main {
+    display: grid; grid-template-columns: minmax(340px, 440px) minmax(0, 1fr);
+    gap: 20px; padding: 22px 28px 48px; max-width: 1600px; margin: 0 auto;
+  }
+  .panel {
+    background: linear-gradient(180deg, rgba(21,29,56,.94), rgba(17,24,48,.94));
+    border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: 0 18px 50px rgba(0,0,0,.24);
+  }
+  .panel-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 16px 18px; border-bottom: 1px solid var(--line);
+  }
+  .panel-head h2 { margin: 0; font-size: 14px; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
+  .panel-body { padding: 18px; }
+  .cases { display: flex; flex-direction: column; gap: 7px; }
+  .case {
+    display: flex; align-items: center; gap: 10px; justify-content: space-between;
+    padding: 10px 11px; border-radius: 10px; border: 1px solid transparent;
+    background: rgba(255,255,255,.025); cursor: pointer; text-align: left;
+    color: var(--text); font: inherit; font-size: 13px; transition: .15s;
+  }
+  .case:hover { border-color: var(--line); background: rgba(110,168,254,.07); }
+  .case.active { border-color: rgba(110,168,254,.55); background: rgba(110,168,254,.12); }
+  .case .obligation { color: var(--muted); font-size: 11px; margin-top: 3px; }
+  .case .title { font-weight: 600; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 14px 0 6px; }
+  textarea, input, select {
+    width: 100%; border: 1px solid var(--line); border-radius: 10px;
+    background: #0d1428; color: var(--text); padding: 10px 12px; font: inherit; font-size: 13px;
+    outline: none;
+  }
+  textarea { font-family: var(--mono); font-size: 12px; line-height: 1.55; resize: vertical; min-height: 210px; }
+  textarea:focus, input:focus, select:focus { border-color: rgba(110,168,254,.65); box-shadow: 0 0 0 3px rgba(110,168,254,.12); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .btn {
+    border: 0; border-radius: 10px; padding: 11px 16px; font: inherit; font-weight: 700; font-size: 13px;
+    cursor: pointer; transition: .15s; display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+  }
+  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #071025; }
+  .btn.primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  .btn.ghost:hover { border-color: rgba(110,168,254,.5); background: rgba(110,168,254,.08); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .actions { display: flex; gap: 10px; margin-top: 16px; }
+  .actions .btn.primary { flex: 1; }
+  .hint { color: var(--muted); font-size: 11.5px; line-height: 1.55; margin-top: 10px; }
+  .error-box {
+    display: none; margin-top: 12px; padding: 11px 12px; border-radius: 10px; font-size: 12.5px;
+    border: 1px solid rgba(248,113,113,.4); background: rgba(248,113,113,.1); color: #fecaca;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .error-box.show { display: block; }
+  .result-empty {
+    display: grid; place-items: center; text-align: center; min-height: 420px; color: var(--muted); padding: 40px;
+  }
+  .result-empty .big { font-size: 40px; margin-bottom: 12px; opacity: .7; }
+  .result-empty h3 { color: var(--text); margin: 0 0 8px; font-size: 16px; }
+  .result-empty p { max-width: 430px; line-height: 1.65; font-size: 13px; margin: 0; }
+  .status-strip { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 999px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: .2px; border: 1px solid var(--line);
+    background: var(--panel-2); color: var(--text); text-transform: capitalize;
+  }
+  .badge.good { color: #bbf7d0; border-color: rgba(52,211,153,.4); background: rgba(52,211,153,.12); }
+  .badge.warn { color: #fde68a; border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.12); }
+  .badge.bad { color: #fecaca; border-color: rgba(248,113,113,.4); background: rgba(248,113,113,.12); }
+  .badge.info { color: #bfdbfe; border-color: rgba(110,168,254,.4); background: rgba(110,168,254,.12); }
+  .meta { color: var(--muted); font-size: 11.5px; margin-left: auto; }
+  .tabs { display: flex; gap: 4px; padding: 12px 18px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .tab {
+    border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 9px 12px; border-radius: 9px 9px 0 0; cursor: pointer; border-bottom: 2px solid transparent;
+  }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,.03); }
+  .tab.active { color: var(--text); border-bottom-color: var(--accent); background: rgba(110,168,254,.07); }
+  .tab-content { padding: 20px 22px 26px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fade .18s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+  .markdown { font-size: 14px; line-height: 1.72; }
+  .markdown h1, .markdown h2, .markdown h3 { line-height: 1.3; margin: 22px 0 8px; font-size: 16px; }
+  .markdown h1:first-child, .markdown h2:first-child { margin-top: 0; }
+  .markdown p { margin: 0 0 12px; }
+  .markdown ul, .markdown ol { margin: 0 0 14px; padding-left: 22px; }
+  .markdown li { margin: 5px 0; }
+  .markdown blockquote {
+    margin: 16px 0 0; padding: 12px 14px; border-left: 3px solid var(--accent);
+    background: rgba(110,168,254,.08); border-radius: 0 10px 10px 0; color: #cbd5e1; font-size: 13px;
+  }
+  .markdown code { font-family: var(--mono); font-size: 12px; background: rgba(255,255,255,.07); padding: 2px 5px; border-radius: 5px; }
+  .markdown strong { color: #fff; }
+  .cite-grid { display: grid; gap: 12px; }
+  .cite-card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 15px; background: rgba(255,255,255,.02); }
+  .cite-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .cite-title { font-weight: 700; font-size: 13.5px; }
+  .cite-sub { color: var(--muted); font-size: 11.5px; margin-top: 3px; }
+  .quote { margin: 11px 0 0; padding: 10px 12px; border-radius: 9px; background: #0d1428; border: 1px solid rgba(42,55,99,.7); font-size: 12.5px; line-height: 1.6; color: #cbd5e1; }
+  .cite-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; font-size: 11.5px; color: var(--muted); }
+  .claims { display: flex; flex-direction: column; gap: 9px; }
+  .claim { border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; background: rgba(255,255,255,.02); }
+  .claim-text { font-size: 13px; line-height: 1.55; }
+  .claim-meta { margin-top: 7px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 11px; color: var(--muted); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .kpi { border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; background: rgba(255,255,255,.02); }
+  .kpi .label { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; }
+  .kpi .value { font-size: 17px; font-weight: 750; margin-top: 5px; font-variant-numeric: tabular-nums; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { text-align: left; padding: 8px 9px; border-bottom: 1px solid rgba(42,55,99,.65); vertical-align: top; }
+  th { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+  td.mono, .mono { font-family: var(--mono); font-size: 11px; }
+  .event-row { cursor: pointer; }
+  .event-row:hover td { background: rgba(110,168,254,.05); }
+  .event-data { display: none; }
+  .event-data.open { display: table-row; }
+  .event-data td { background: #0b1226; }
+  .event-data pre { margin: 0; white-space: pre-wrap; word-break: break-word; color: #b9c6e4; font-size: 11px; }
+  .issues { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .issue { padding: 10px 12px; border-radius: 9px; border: 1px solid rgba(248,113,113,.35); background: rgba(248,113,113,.08); font-size: 12.5px; line-height: 1.5; }
+  .issue .reason { font-weight: 700; color: #fecaca; }
+  .feedback { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .feedback .btn { padding: 8px 12px; font-size: 12px; }
+  .feedback-note { color: var(--muted); font-size: 11.5px; }
+  .spinner {
+    width: 15px; height: 15px; border: 2px solid rgba(7,16,37,.3); border-top-color: #071025;
+    border-radius: 50%; animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .skeleton { position: relative; overflow: hidden; background: rgba(255,255,255,.045); border-radius: 8px; }
+  .skeleton::after {
+    content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent);
+    animation: shimmer 1.3s infinite;
+  }
+  @keyframes shimmer { to { transform: translateX(100%); } }
+  .progress-card { padding: 22px; display: grid; gap: 13px; }
+  .progress-line { height: 9px; border-radius: 999px; }
+  .progress-line.w70 { width: 70%; } .progress-line.w45 { width: 45%; } .progress-line.w90 { width: 90%; }
+  .queue-status { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12.5px; }
+  footer { color: var(--muted); font-size: 11px; text-align: center; padding: 0 24px 30px; line-height: 1.6; }
+  .toast {
+    position: fixed; right: 22px; bottom: 22px; z-index: 40; max-width: 360px;
+    padding: 12px 15px; border-radius: 11px; background: #101a34; border: 1px solid var(--line);
+    box-shadow: 0 16px 40px rgba(0,0,0,.4); font-size: 12.5px; line-height: 1.5;
+    opacity: 0; transform: translateY(8px); transition: .2s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: none; }
+  @media (max-width: 980px) {
+    main { grid-template-columns: 1fr; padding: 16px; }
+    header { padding: 16px; }
+    .header-right { display: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">§</div>
+    <div>
+      <h1>Workplace Compliance Advisory Desk</h1>
+      <div class="sub">Cited advisories · in-force checks · verification loop · synthetic data only</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="pill" id="health-pill"><span class="dot" id="health-dot"></span><span id="health-text">checking service…</span></span>
+    <span class="pill" id="index-pill">index —</span>
+    <a class="pill" href="/docs" target="_blank" rel="noreferrer">API docs ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Request</h2>
+      <span class="badge info">synthetic only</span>
+    </div>
+    <div class="panel-body">
+      <label for="case-list">Demo scenarios</label>
+      <div id="case-list" class="cases"><div class="skeleton" style="height:46px"></div><div class="skeleton" style="height:46px"></div><div class="skeleton" style="height:46px"></div></div>
+
+      <div class="row" style="margin-top:16px">
+        <div>
+          <label for="variant">Prompt variant</label>
+          <select id="variant">
+            <option value="v2" selected>v2 — qualifier-aware + loop</option>
+            <option value="v1">v1 — single-pass baseline</option>
+          </select>
+        </div>
+        <div>
+          <label for="client-id">Client id</label>
+          <input id="client-id" value="demo-hr" autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+
+      <label for="question">Question</label>
+      <textarea id="question" spellcheck="false">Loading demo cases…</textarea>
+      <div class="hint" id="json-status">Request JSON is validated by the published contract.</div>
+
+      <div class="actions">
+        <button class="btn primary" id="submit-btn" type="button">Request advisory</button>
+        <button class="btn ghost" id="reset-btn" type="button" title="Reload the selected demo case">Reset</button>
+      </div>
+      <div class="error-box" id="error-box"></div>
+      <div class="hint">
+        Every request must carry <code>consent: true</code> and contain no real personal data.
+        Rejected payloads are quarantined before any agent starts.
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Advisory</h2>
+      <span class="pill" id="run-pill">no run yet</span>
+    </div>
+    <div id="result-root">
+      <div class="result-empty" id="empty-state">
+        <div class="big">§</div>
+        <h3>Pick a scenario and request an advisory</h3>
+        <p>
+          The desk retrieves only provisions in force on the request date, cites every operative claim,
+          and escalates when the evidence is incomplete. The 1972 Gratuity Act is indexed as repealed
+          so its use is visible and measured.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.
+  No real personal data is processed; all examples are synthetic.
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const state = { cases: [], selected: null, runId: null, pollTimer: null, result: null, trace: null, busy: false };
+  const el = (id) => document.getElementById(id);
+
+  const ROUTE_BADGE = {
+    answer_with_citation: "good",
+    request_more_establishment_detail: "warn",
+    legal_counsel_review: "bad",
+  };
+  const VERIFY_BADGE = { passed: "good", failed: "bad", escalated: "warn" };
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[ch]));
+  }
+
+  function inline(text) {
+    let out = escapeHtml(text);
+    out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
+    out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+    return out;
+  }
+
+  function markdown(text) {
+    const lines = String(text || "").split(/\r?\n/);
+    const out = [];
+    let list = null;
+    let quote = [];
+    const flushList = () => { if (list) { out.push(`<${list.tag}>${list.items.join("")}</${list.tag}>`); list = null; } };
+    const flushQuote = () => {
+      if (quote.length) { out.push(`<blockquote>${quote.map(inline).join("<br>")}</blockquote>`); quote = []; }
+    };
+    for (const raw of lines) {
+      const line = raw.trim();
+      if (!line) { flushList(); flushQuote(); continue; }
+      if (line.startsWith(">")) { flushList(); quote.push(line.replace(/^>\s?/, "")); continue; }
+      flushQuote();
+      let m;
+      if ((m = line.match(/^(#{1,3})\s+(.*)$/))) {
+        flushList();
+        const level = Math.min(3, m[1].length + 1);
+        out.push(`<h${level}>${inline(m[2])}</h${level}>`);
+      } else if ((m = line.match(/^[-*]\s+(.*)$/))) {
+        if (!list || list.tag !== "ul") { flushList(); list = { tag: "ul", items: [] }; }
+        list.items.push(`<li>${inline(m[1])}</li>`);
+      } else if ((m = line.match(/^\d+[.)]\s+(.*)$/))) {
+        if (!list || list.tag !== "ol") { flushList(); list = { tag: "ol", items: [] }; }
+        list.items.push(`<li>${inline(m[1])}</li>`);
+      } else {
+        flushList();
+        out.push(`<p>${inline(line)}</p>`);
+      }
+    }
+    flushList(); flushQuote();
+    return out.join("\n");
+  }
+
+  function toast(message) {
+    const node = el("toast");
+    node.textContent = message;
+    node.classList.add("show");
+    clearTimeout(node._timer);
+    node._timer = setTimeout(() => node.classList.remove("show"), 3200);
+  }
+
+  function showError(message) {
+    const box = el("error-box");
+    box.textContent = message;
+    box.classList.add("show");
+  }
+
+  function clearError() {
+    const box = el("error-box");
+    box.textContent = "";
+    box.classList.remove("show");
+  }
+
+  function setHealth(ok, text) {
+    el("health-dot").className = "dot " + (ok ? "ok" : "bad");
+    el("health-text").textContent = text;
+  }
+
+  async function checkHealth() {
+    try {
+      const res = await fetch("/health/ready", { headers: { Accept: "application/json" } });
+      const body = await res.json();
+      setHealth(res.ok, res.ok ? "ready" : "degraded");
+      if (!res.ok) console.warn("health", body);
+    } catch (err) {
+      setHealth(false, "unavailable");
+    }
+    try {
+      const res = await fetch("/v1/index", { headers: { Accept: "application/json" } });
+      if (res.ok) {
+        const body = await res.json();
+        const count = body.chunk_count ?? body.chunks ?? "—";
+        el("index-pill").textContent = `index ${body.index_version ? String(body.index_version).slice(-8) : "—"} · ${count} chunks`;
+      }
+    } catch (_) { /* health badge already communicates the problem */ }
+  }
+
+  async function loadCases() {
+    try {
+      const res = await fetch("/v1/demo/cases", { headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error(`demo cases unavailable (${res.status})`);
+      const body = await res.json();
+      state.cases = body.cases || [];
+      renderCases();
+      if (state.cases.length) selectCase(0);
+    } catch (err) {
+      el("case-list").innerHTML = `<div class="hint">Could not load demo cases: ${escapeHtml(err.message)}</div>`;
+      el("question").value = "";
+    }
+  }
+
+  function renderCases() {
+    const list = el("case-list");
+    list.innerHTML = "";
+    state.cases.forEach((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "case" + (index === state.selected ? " active" : "");
+      button.innerHTML = `<span><span class="title">${escapeHtml(item.title)}</span><div class="obligation">${escapeHtml(item.obligation)}</div></span><span class="badge">${escapeHtml(item.id.split("-")[0])}</span>`;
+      button.addEventListener("click", () => selectCase(index));
+      list.appendChild(button);
+    });
+  }
+
+  function selectCase(index) {
+    if (!state.cases[index]) return;
+    state.selected = index;
+    const demo = state.cases[index];
+    const request = JSON.parse(JSON.stringify(demo.request));
+    request.requester = request.requester || {};
+    request.requester.client_id = el("client-id").value || "demo-hr";
+    if (!request.as_of_date) {
+      request.as_of_date = new Date().toISOString().slice(0, 10);
+    }
+    el("question").value = JSON.stringify(request, null, 2);
+    el("json-status").textContent = `${demo.title} · all facts synthetic`;
+    clearError();
+    renderCases();
+  }
+
+  function currentPayload() {
+    let payload;
+    try {
+      payload = JSON.parse(el("question").value);
+    } catch (err) {
+      throw new Error(`Request JSON is invalid: ${err.message}`);
+    }
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+      throw new Error("Request JSON must be a single object.");
+    }
+    payload.requester = payload.requester || {};
+    payload.requester.client_id = payload.requester.client_id || el("client-id").value || "demo-hr";
+    if (payload.consent !== true) {
+      throw new Error("consent must be true: only synthetic data may enter the system.");
+    }
+    return payload;
+  }
+
+  function setBusy(busy) {
+    state.busy = busy;
+    const button = el("submit-btn");
+    button.disabled = busy;
+    button.innerHTML = busy ? '<span class="spinner"></span> Running…' : "Request advisory";
+  }
+
+  function resetResult() {
+    if (state.pollTimer) { clearTimeout(state.pollTimer); state.pollTimer = null; }
+    state.runId = null;
+    state.result = null;
+    state.trace = null;
+    el("run-pill").textContent = "no run yet";
+    el("result-root").innerHTML = `
+      <div class="result-empty">
+        <div class="big">§</div>
+        <h3>Pick a scenario and request an advisory</h3>
+        <p>The desk retrieves only provisions in force on the request date, cites every operative claim, and
+        escalates when the evidence is incomplete. The 1972 Gratuity Act is indexed as repealed so its use is
+        visible and measured.</p>
+      </div>`;
+  }
+
+  function renderProgress(stage, runId) {
+    el("run-pill").textContent = runId ? `run ${runId.slice(-8)}` : "submitting";
+    el("result-root").innerHTML = `
+      <div class="result-empty" style="min-height:0;align-items:stretch;display:block">
+        <div class="progress-card">
+          <div class="queue-status"><span class="spinner" style="border-color:rgba(255,255,255,.15);border-top-color:var(--accent)"></span>
+            <span>${escapeHtml(stage)}</span></div>
+          <div class="skeleton progress-line w90" style="height:22px"></div>
+          <div class="skeleton progress-line w70"></div>
+          <div class="skeleton progress-line w45"></div>
+          <div class="skeleton progress-line" style="height:70px"></div>
+          <div class="skeleton progress-line w70"></div>
+        </div>
+      </div>`;
+  }
+
+  async function submit() {
+    if (state.busy) return;
+    clearError();
+    let payload;
+    try {
+      payload = currentPayload();
+    } catch (err) {
+      showError(err.message);
+      return;
+    }
+    setBusy(true);
+    resetResult();
+    renderProgress("Submitting request…", null);
+    try {
+      const res = await fetch("/v1/advisories", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "X-Prompt-Variant": el("variant").value,
+          "X-Client-Id": el("client-id").value || "demo-hr",
+        },
+        body: JSON.stringify(payload),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.status === 422) {
+        const errors = (body.field_errors || []).map((item) => `• ${item.field}: ${item.message}`).join("\n");
+        throw new Error(`Request quarantined before any agent started.${errors ? "\n\n" + errors : ""}${body.quarantine_id ? "\n\nQuarantine id: " + body.quarantine_id : ""}`);
+      }
+      if (res.status === 429) {
+        throw new Error(`Rate limited. Retry after ${body.retry_after_ms ?? "a few"} ms.`);
+      }
+      if (!res.ok) throw new Error(`Request failed (${res.status}): ${body.detail || body.error || "unknown error"}`);
+      state.runId = body.run_id;
+      el("run-pill").textContent = `run ${String(body.run_id).slice(-8)}`;
+      renderProgress(body.cached ? "Served from the whole-run cache…" : "Queued · agents researching provisions…", body.run_id);
+      await poll(0);
+    } catch (err) {
+      showError(err.message);
+      el("result-root").innerHTML = "";
+      setBusy(false);
+    }
+  }
+
+  async function poll(attempt) {
+    if (!state.runId) return;
+    if (attempt > 90) {
+      showError("The run did not complete within 90 seconds. Inspect /v1/advisories/" + state.runId + "/trace.");
+      setBusy(false);
+      return;
+    }
+    try {
+      const res = await fetch(`/v1/advisories/${encodeURIComponent(state.runId)}`, { headers: { Accept: "application/json" } });
+      if (res.status === 404) throw new Error("Run not found or expired.");
+      if (!res.ok) throw new Error(`Polling failed (${res.status}).`);
+      const envelope = await res.json();
+      const terminal = ["completed", "escalated", "failed"].includes(envelope.status);
+      if (terminal) {
+        if (envelope.status === "failed") throw new Error(envelope.error || "The run failed.");
+        state.result = envelope.result;
+        el("run-pill").textContent = `run ${String(state.runId).slice(-8)}`;
+        await loadTrace();
+        renderResult(envelope.result);
+        setBusy(false);
+        return;
+      }
+      const stage = envelope.progress || envelope.status || "running";
+      const node = document.querySelector(".queue-status span:last-child");
+      if (node) node.textContent = `Running · ${stage}`;
+      state.pollTimer = setTimeout(() => poll(attempt + 1), 800);
+    } catch (err) {
+      showError(err.message);
+      setBusy(false);
+    }
+  }
+
+  async function loadTrace() {
+    try {
+      const res = await fetch(`/v1/advisories/${encodeURIComponent(state.runId)}/trace`, { headers: { Accept: "application/json" } });
+      if (res.ok) state.trace = await res.json();
+    } catch (_) { state.trace = null; }
+  }
+
+  function badge(text, kind) {
+    return `<span class="badge ${kind || ""}">${escapeHtml(text)}</span>`;
+  }
+
+  function renderResult(result) {
+    if (!result) return;
+    const route = result.route || "unknown";
+    const verify = (result.verification && result.verification.outcome) || "unknown";
+    const citations = result.citations || [];
+    const claims = result.claims || [];
+    const usage = result.usage || {};
+    const guardrails = result.guardrails || {};
+    const required = (result.route_decision && result.route_decision.required_fields) || [];
+
+    const header = `
+      <div class="status-strip">
+        ${badge(route.replace(/_/g, " "), ROUTE_BADGE[route] || "info")}
+        ${badge("verification " + verify, VERIFY_BADGE[verify] || "info")}
+        ${badge(result.domain || "other", "info")}
+        ${result.cached ? badge("cache hit", "info") : ""}
+        ${result.degraded ? badge("degraded", "warn") : ""}
+        <span class="meta">${Number(result.latency_ms || 0).toFixed(0)} ms · ${citations.length} citations · ${claims.length} claims</span>
+      </div>`;
+
+    const tabs = `
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="advisory" role="tab">Advisory</button>
+        <button class="tab" data-tab="citations" role="tab">Citations <span class="badge">${citations.length}</span></button>
+        <button class="tab" data-tab="verification" role="tab">Verification</button>
+        <button class="tab" data-tab="trace" role="tab">Trace</button>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane active" id="pane-advisory">
+          <div class="markdown">${markdown(result.advisory)}</div>
+          <div class="feedback">
+            <span class="feedback-note">Was this advisory useful?</span>
+            <button class="btn ghost" data-feedback="yes">Satisfied</button>
+            <button class="btn ghost" data-feedback="no">Needs work</button>
+            <span class="feedback-note" id="feedback-note"></span>
+          </div>
+        </div>
+        <div class="tab-pane" id="pane-citations">${renderCitations(citations, claims)}</div>
+        <div class="tab-pane" id="pane-verification">${renderVerification(result)}</div>
+        <div class="tab-pane" id="pane-trace"><div class="hint">Loading trace…</div></div>
+      </div>`;
+
+    el("result-root").innerHTML = header + tabs;
+    el("result-root").querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        el("result-root").querySelectorAll(".tab").forEach((item) => item.classList.toggle("active", item === tab));
+        el("result-root").querySelectorAll(".tab-pane").forEach((pane) => pane.classList.remove("active"));
+        const pane = el("pane-" + tab.dataset.tab);
+        if (pane) pane.classList.add("active");
+      });
+    });
+    el("result-root").querySelectorAll("[data-feedback]").forEach((button) => {
+      button.addEventListener("click", () => submitFeedback(button.dataset.feedback === "yes"));
+    });
+
+    if (required.length) {
+      toast("The desk needs more establishment detail: " + required.join(", "));
+    }
+    renderTrace();
+  }
+
+  function renderCitations(citations, claims) {
+    if (!citations.length) {
+      return `<div class="hint">No provisions were cited. This usually means the desk escalated instead of answering.</div>`;
+    }
+    const claimIndex = new Map(claims.map((claim) => [claim.id, claim]));
+    const cards = citations.map((cite) => {
+      const statusKind = cite.status === "repealed" ? "warn" : cite.status === "in_force" ? "good" : "info";
+      const support = typeof cite.support_score === "number" ? cite.support_score.toFixed(2) : "—";
+      const repealed = cite.status === "repealed" && cite.effective_to
+        ? `<span class="badge warn">repealed ${escapeHtml(cite.effective_to)}${cite.repealed_by ? " by " + escapeHtml(cite.repealed_by) : ""}</span>`
+        : "";
+      return `
+        <article class="cite-card">
+          <div class="cite-top">
+            <div>
+              <div class="cite-title">${escapeHtml(cite.citation)}</div>
+              <div class="cite-sub">${escapeHtml(cite.statute)} · ${escapeHtml(cite.section)}${cite.heading ? " · " + escapeHtml(cite.heading) : ""}</div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+              ${badge(String(cite.status || "unknown").replace(/_/g, " "), statusKind)}
+              ${repealed}
+            </div>
+          </div>
+          <p class="quote">“${escapeHtml(cite.quote)}”</p>
+          <div class="cite-foot">
+            <span>support ${support}${cite.retrieved_rank ? " · rank " + cite.retrieved_rank : ""}</span>
+            <a href="${escapeHtml(cite.source_url)}" target="_blank" rel="noreferrer">official source ↗</a>
+          </div>
+        </article>`;
+    }).join("");
+    const claimRows = claims.map((claim) => {
+      const kind = claim.kind || "operative";
+      return `<div class="claim">
+        <div class="claim-text">${escapeHtml(claim.text)}</div>
+        <div class="claim-meta">
+          ${badge(kind, kind === "operative" ? "info" : "")}
+          ${claim.supported ? badge("supported", "good") : badge("unsupported", "bad")}
+          <span>score ${typeof claim.support_score === "number" ? claim.support_score.toFixed(2) : "—"}</span>
+          ${(claim.citations || []).length ? `<span class="mono">${claim.citations.map(escapeHtml).join(" · ")}</span>` : ""}
+        </div>
+      </div>`;
+    }).join("");
+    return `
+      ${claimRows ? `<h3 style="font-size:13px;margin:0 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px">Claims</h3><div class="claims" style="margin-bottom:22px">${claimRows}</div>` : ""}
+      <h3 style="font-size:13px;margin:0 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px">Cited provisions</h3>
+      <div class="cite-grid">${cards}</div>`;
+  }
+
+  function renderVerification(result) {
+    const verification = result.verification || {};
+    const issues = verification.issues || [];
+    const usage = result.usage || {};
+    const guardrails = result.guardrails || {};
+    const decision = result.route_decision || {};
+    const issueHtml = issues.map((issue) => `
+      <div class="issue">
+        <div><span class="reason">${escapeHtml(issue.reason)}</span> · claim ${escapeHtml(issue.claim_id)}</div>
+        <div>${escapeHtml(issue.detail)}</div>
+        ${issue.suggested_query ? `<div class="hint">Suggested query: ${escapeHtml(issue.suggested_query)}</div>` : ""}
+      </div>`).join("");
+    const prompts = Object.entries(result.prompt_versions || {}).map(([task, version]) => `${task}=${version}`).join(" · ") || "—";
+    return `
+      <div class="kpis">
+        <div class="kpi"><div class="label">Outcome</div><div class="value">${escapeHtml(verification.outcome || "unknown")}</div></div>
+        <div class="kpi"><div class="label">Claims supported</div><div class="value">${verification.claims_supported ?? 0} / ${verification.claims_checked ?? 0}</div></div>
+        <div class="kpi"><div class="label">Verification loops</div><div class="value">${verification.loops ?? 0}</div></div>
+        <div class="kpi"><div class="label">Agent steps</div><div class="value">${result.steps ?? 0} · ${result.tool_calls ?? 0} tools</div></div>
+        <div class="kpi"><div class="label">Tokens / cost</div><div class="value">${usage.total_tokens ?? 0} · $${Number(usage.cost_usd || 0).toFixed(4)}</div></div>
+        <div class="kpi"><div class="label">Latency</div><div class="value">${Number(result.latency_ms || 0).toFixed(0)} ms</div></div>
+      </div>
+      <table>
+        <tbody>
+          <tr><th style="width:190px">Route basis</th><td>${escapeHtml(decision.basis || "—")}</td></tr>
+          <tr><th>Confidence</th><td>${typeof decision.confidence === "number" ? decision.confidence.toFixed(2) : "—"}</td></tr>
+          <tr><th>Escalation path</th><td>${(decision.escalation_path || []).map(escapeHtml).join(" → ") || "—"}</td></tr>
+          <tr><th>Required fields</th><td>${(decision.required_fields || []).map(escapeHtml).join(", ") || "—"}</td></tr>
+          <tr><th>Verification checks</th><td>${(verification.checks || []).map(escapeHtml).join(", ") || "—"}</td></tr>
+          <tr><th>Prompt versions</th><td class="mono">${escapeHtml(prompts)}</td></tr>
+          <tr><th>Guardrails</th><td>input=${escapeHtml(guardrails.input_action || "none")} · toxicity=${escapeHtml(guardrails.toxicity_action || "none")} · filtered=${(guardrails.output_filtered_phrases || []).length}</td></tr>
+          <tr><th>Index</th><td class="mono">${escapeHtml(result.index_version || "—")}</td></tr>
+        </tbody>
+      </table>
+      ${issueHtml ? `<h3 style="font-size:13px;margin:20px 0 0;color:var(--muted);text-transform:uppercase;letter-spacing:.4px">Issues</h3><div class="issues">${issueHtml}</div>` : ""}`;
+  }
+
+  function renderTrace() {
+    const pane = el("pane-trace");
+    if (!pane) return;
+    const events = (state.trace && state.trace.events) || [];
+    if (!events.length) {
+      pane.innerHTML = `<div class="hint">No trace events recorded for this run.</div>`;
+      return;
+    }
+    const rows = events.map((event, index) => {
+      const data = event.data && Object.keys(event.data).length ? JSON.stringify(event.data) : "";
+      return `
+        <tr class="event-row" data-index="${index}">
+          <td class="mono">${event.seq}</td>
+          <td class="mono">${Number(event.elapsed_ms || 0).toFixed(0)} ms</td>
+          <td><span class="badge ${event.kind === "llm_call" ? "info" : event.kind === "step_end" ? "good" : ""}">${escapeHtml(event.kind)}</span></td>
+          <td>${escapeHtml(event.agent || "—")}</td>
+          <td class="mono">${escapeHtml(event.name || "—")}</td>
+        </tr>
+        <tr class="event-data" id="event-data-${index}"><td colspan="5"><pre>${escapeHtml(data || "{}")}</pre></td></tr>`;
+    }).join("");
+    pane.innerHTML = `
+      <div class="hint" style="margin:0 0 10px">Click a row to inspect the structured payload. Correlation id:
+        <span class="mono">${escapeHtml((state.trace && state.trace.correlation_id) || "—")}</span></div>
+      <table>
+        <thead><tr><th>Seq</th><th>Elapsed</th><th>Kind</th><th>Agent</th><th>Name</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    pane.querySelectorAll(".event-row").forEach((row) => {
+      row.addEventListener("click", () => {
+        const dataRow = el("event-data-" + row.dataset.index);
+        if (dataRow) dataRow.classList.toggle("open");
+      });
+    });
+  }
+
+  async function submitFeedback(satisfactory) {
+    if (!state.runId) return;
+    const reason = window.prompt(
+      satisfactory ? "What worked? (min 3 characters)" : "What should improve? (min 3 characters)",
+      satisfactory ? "Cited and clear" : "Needs a better citation",
+    );
+    if (reason === null) return;
+    if (reason.trim().length < 3) { toast("Feedback reason must be at least 3 characters."); return; }
+    try {
+      const res = await fetch(`/v1/advisories/${encodeURIComponent(state.runId)}/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ satisfactory, reason: reason.trim(), category: satisfactory ? "accuracy" : "citation" }),
+      });
+      if (!res.ok) throw new Error(`feedback failed (${res.status})`);
+      const note = el("feedback-note");
+      if (note) note.textContent = "Feedback recorded. Thank you.";
+      toast("Feedback recorded.");
+    } catch (err) {
+      toast("Could not record feedback: " + err.message);
+    }
+  }
+
+  el("submit-btn").addEventListener("click", submit);
+  el("reset-btn").addEventListener("click", () => {
+    if (state.selected !== null) selectCase(state.selected);
+  });
+  el("client-id").addEventListener("change", () => {
+    try {
+      const payload = JSON.parse(el("question").value);
+      payload.requester = payload.requester || {};
+      payload.requester.client_id = el("client-id").value || "demo-hr";
+      el("question").value = JSON.stringify(payload, null, 2);
+    } catch (_) { /* leave invalid JSON for the user to fix */ }
+  });
+
+  checkHealth();
+  loadCases();
+  setInterval(checkHealth, 30000);
+})();
+</script>
+</body>
+</html>
