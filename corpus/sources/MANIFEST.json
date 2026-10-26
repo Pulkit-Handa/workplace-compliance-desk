@@ -1,0 +1,53 @@
+{
+  "generated_by": "scripts/build_corpus.py",
+  "extraction": "pdftotext -layout, then provision-level normalisation",
+  "as_of": "2025-11-21",
+  "documents": [
+    {
+      "id": "ssc2020",
+      "title": "The Code on Social Security, 2020",
+      "instrument_type": "code",
+      "status": "in_force",
+      "effective_from": "2025-11-21",
+      "source_url": "https://www.labour.gov.in/static/uploads/2025/07/b0620548445580767b5c0d18c95c26f7.pdf",
+      "source_file": "corpus/sources/ss_code_2020.txt",
+      "source_sha256": "5d3b3e292330dd0379e7dca45bc05b7fa7a80f2e4b9d14336d26c0f35a000fa5",
+      "note": "Gazette of India, No. 36 of 2020. Commenced 21 Nov 2025 by S.O. 5319(E)."
+    },
+    {
+      "id": "posh2013",
+      "title": "The Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013",
+      "instrument_type": "act",
+      "status": "in_force",
+      "effective_from": "2013-12-09",
+      "source_url": "https://doe.gov.in/files/inline-documents/DoE_Prevention_sexual_harassment.pdf",
+      "source_file": "corpus/sources/posh_act_2013.txt",
+      "source_sha256": "7b7c795a24f23f9e3aab60cb983808c3d929aceffa22a4e83786b32f25a3db5e",
+      "note": "Act No. 14 of 2013. Not repealed by the four Labour Codes."
+    },
+    {
+      "id": "gratuity1972",
+      "title": "The Payment of Gratuity Act, 1972",
+      "instrument_type": "repealed_act",
+      "status": "repealed",
+      "effective_from": "1972-09-16",
+      "effective_to": "2025-11-20",
+      "repealed_by": "ssc2020",
+      "source_url": "https://www.labour.gov.in/static/uploads/2025/06/23e3be0e31de495acd1698ed85007ec1.pdf",
+      "source_file": "corpus/sources/payment_of_gratuity_act_1972.txt",
+      "source_sha256": "4a3947fb046c59b8090a47df6e9c89536e534350c6e40714173c4df78e014409",
+      "note": "Included deliberately. Repealed by the Code on Social Security, 2020, s. 164, w.e.f. 21 Nov 2025. Retrieved results carry status=repealed; operative claims must cite the Code."
+    },
+    {
+      "id": "commencement2025",
+      "title": "Commencement notifications for the four Labour Codes",
+      "instrument_type": "notification",
+      "status": "in_force",
+      "effective_from": "2025-11-21",
+      "source_url": "https://labour.maharashtra.gov.in/sites/default/files/2025-11/implementation-of-labour-codes.pdf",
+      "source_file": "corpus/sources/labour_codes_commencement_2025.txt",
+      "source_sha256": "6961199bfe59a9c7cbc13853f7c86c3f8301f2143f49da8f6efc355f7eed40dc",
+      "note": "S.O. 5319(E) (Social Security Code), 5320(E), 5321(E) and 5322(E), all dated 21 Nov 2025."
+    }
+  ]
+}
