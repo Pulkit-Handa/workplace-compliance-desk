@@ -1,0 +1,294 @@
+{
+  "generated_at": "20261026T152508Z",
+  "fixed_term_section_4_1": {
+    "case": "fixed_expiry_18m",
+    "run_id": "run_db8515dec0824b4eadb0",
+    "status": "completed",
+    "route": "answer_with_citation",
+    "verification": "passed",
+    "loops": 0,
+    "issues": [],
+    "claims": 9,
+    "citations": [
+      {
+        "id": "ssc2020-sfirst-schedule-chapter-v::c1",
+        "citation": "Code on Social Security, 2020, s. First Schedule (Chapter V)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-1::c1",
+        "citation": "Code on Social Security, 2020, s. 53(1)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-1-second-proviso::c1",
+        "citation": "Code on Social Security, 2020, s. 53(1) (second proviso)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-2-third-proviso::c1",
+        "citation": "Code on Social Security, 2020, s. 53(2) (third proviso)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s54::c2",
+        "citation": "Code on Social Security, 2020, s. 54",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-2::c1",
+        "citation": "Code on Social Security, 2020, s. 53(2)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-6::c1",
+        "citation": "Code on Social Security, 2020, s. 53(6)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s164-1::c1",
+        "citation": "Code on Social Security, 2020, s. 164(1)",
+        "status": "in_force"
+      },
+      {
+        "id": "commencement2025-ss-o-5319-e::c1",
+        "citation": "Labour Codes Commencement Notification, 2025, s. S.O. 5319(E)",
+        "status": "in_force"
+      },
+      {
+        "id": "gratuity1972-s4::c1",
+        "citation": "Payment of Gratuity Act, 1972, s. 4",
+        "status": "repealed"
+      }
+    ],
+    "summary": "Under s. 53(1) of the Code on Social Security, 2020, gratuity is payable on termination of a fixed term contract; the second proviso waives the five-year condition on expiry and the third proviso to s. 53(2) requires a pro rata payment. The 1972 Act is repealed and is background only.",
+    "cost_usd": 0.0008574,
+    "prompt_tokens": 5700,
+    "completion_tokens": 4,
+    "cached": false,
+    "trace": {
+      "events": 26,
+      "tool_calls": 9,
+      "tool_calls_with_passages": 8,
+      "passage_previews": 32,
+      "llm_calls": 4,
+      "llm_prompt_versions": [
+        "draft-v2",
+        "intake-v2",
+        "route-v2",
+        "verify-v2"
+      ],
+      "llm_cost_usd_sum": 0.0008574,
+      "verification_event": {
+        "claims_checked": 9,
+        "claims_supported": 9,
+        "issues": [],
+        "model_issue_count": 0,
+        "loops": 0
+      }
+    }
+  },
+  "fixed_term_repeat": {
+    "case": "fixed_expiry_18m",
+    "run_id": "run_d4f423828a8749489432",
+    "status": "completed",
+    "route": "answer_with_citation",
+    "verification": "passed",
+    "loops": 0,
+    "issues": [],
+    "claims": 9,
+    "citations": [
+      {
+        "id": "ssc2020-sfirst-schedule-chapter-v::c1",
+        "citation": "Code on Social Security, 2020, s. First Schedule (Chapter V)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-1::c1",
+        "citation": "Code on Social Security, 2020, s. 53(1)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-1-second-proviso::c1",
+        "citation": "Code on Social Security, 2020, s. 53(1) (second proviso)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-2-third-proviso::c1",
+        "citation": "Code on Social Security, 2020, s. 53(2) (third proviso)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s54::c2",
+        "citation": "Code on Social Security, 2020, s. 54",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-2::c1",
+        "citation": "Code on Social Security, 2020, s. 53(2)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s53-6::c1",
+        "citation": "Code on Social Security, 2020, s. 53(6)",
+        "status": "in_force"
+      },
+      {
+        "id": "ssc2020-s164-1::c1",
+        "citation": "Code on Social Security, 2020, s. 164(1)",
+        "status": "in_force"
+      },
+      {
+        "id": "commencement2025-ss-o-5319-e::c1",
+        "citation": "Labour Codes Commencement Notification, 2025, s. S.O. 5319(E)",
+        "status": "in_force"
+      },
+      {
+        "id": "gratuity1972-s4::c1",
+        "citation": "Payment of Gratuity Act, 1972, s. 4",
+        "status": "repealed"
+      }
+    ],
+    "summary": "Under s. 53(1) of the Code on Social Security, 2020, gratuity is payable on termination of a fixed term contract; the second proviso waives the five-year condition on expiry and the third proviso to s. 53(2) requires a pro rata payment. The 1972 Act is repealed and is background only.",
+    "cost_usd": 0.0008574,
+    "prompt_tokens": 5700,
+    "completion_tokens": 4,
+    "cached": true
+  },
+  "out_of_scope": {
+    "case": "outside",
+    "run_id": "run_889a3693db28484f8852",
+    "status": "escalated",
+    "route": "legal_counsel_review",
+    "verification": "passed",
+    "loops": 0,
+    "issues": [],
+    "claims": 1,
+    "citations": [],
+    "summary": "The request falls outside the indexed corpus and is escalated without a legal conclusion.",
+    "cost_usd": 0.0009190499999999999,
+    "prompt_tokens": 6111,
+    "completion_tokens": 4,
+    "cached": false
+  },
+  "consent_false": {
+    "status_code": 422,
+    "body": {
+      "error": "validation_failed",
+      "correlation_id": "corr_6c1d126575914a6c9cad",
+      "quarantine_id": "quar_affeb11b16fd438e90e4",
+      "field_errors": [
+        {
+          "field": "consent",
+          "code": "cross_field",
+          "message": "consent must be true: only synthetic data may enter the system"
+        }
+      ],
+      "agent_started": false,
+      "message": "Request rejected at the ingestion boundary. No agent run was started."
+    }
+  },
+  "malformed": {
+    "status_code": 422,
+    "body": {
+      "error": "validation_failed",
+      "correlation_id": "corr_d68470cae34b4ea3b75c",
+      "quarantine_id": "quar_01aba458d74a4598ac24",
+      "field_errors": [
+        {
+          "field": "employment.worker_type",
+          "code": "enum",
+          "message": "Input should be 'permanent', 'fixed_term', 'contract', 'consultant', 'apprentice' or 'unknown'"
+        },
+        {
+          "field": "unexpected_field",
+          "code": "extra_forbidden",
+          "message": "Extra inputs are not permitted"
+        }
+      ],
+      "agent_started": false,
+      "message": "Request rejected at the ingestion boundary. No agent run was started."
+    }
+  },
+  "injection": {
+    "status_code": 422,
+    "body": {
+      "error": "validation_failed",
+      "correlation_id": "corr_2b12420a10b648de9c34",
+      "quarantine_id": "quar_83bc832a5cf9454fa27d",
+      "field_errors": [
+        {
+          "field": "question",
+          "code": "prompt_injection",
+          "message": "prompt_injection detected (ignore_previous, high)"
+        },
+        {
+          "field": "question",
+          "code": "prompt_injection",
+          "message": "prompt_injection detected (prompt_exfiltration, high)"
+        }
+      ],
+      "agent_started": false,
+      "message": "Request rejected at the ingestion boundary. No agent run was started."
+    }
+  },
+  "host_quarantine_files": [
+    "data/quarantine/2026-10-26/quar_e35022cb07ab4d7abd78.json"
+  ],
+  "self_verification": {
+    "run_id": "run_102f33fc24ed4714b9cd",
+    "status": "escalated",
+    "route": "legal_counsel_review",
+    "route_basis": "Verification did not pass: number_not_supported; qualifier_missing; qualifier_missing",
+    "verification": "failed",
+    "loops": 2,
+    "issues": [
+      {
+        "claim_id": "clm_01",
+        "reason": "number_not_supported",
+        "detail": "Number(s) [99] do not appear in the cited passage.",
+        "suggested_query": "gratuity five years not necessary death disablement expiry fixed term proviso"
+      },
+      {
+        "claim_id": "qualifiers",
+        "reason": "qualifier_missing",
+        "detail": "fixed term employment is paid pro rata under the third proviso to s. 53(2); the provision is absent from the draft's operative citations.",
+        "suggested_query": "gratuity pro rata fixed term employment third proviso"
+      },
+      {
+        "claim_id": "qualifiers",
+        "reason": "qualifier_missing",
+        "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+        "suggested_query": "gratuity applicability ten or more employees first schedule"
+      }
+    ],
+    "research_retry_steps": 2,
+    "published_claims": 0,
+    "published_citations": 0
+  },
+  "circuit_breaker": {
+    "fallback_used": true,
+    "fallback_provider": "stub_local",
+    "error": "All connection attempts failed",
+    "circuit": {
+      "state": "open",
+      "failures": 1,
+      "threshold": 1,
+      "cooldown_s": 30.0,
+      "seconds_until_probe": 30.0,
+      "last_error": "All connection attempts failed",
+      "transitions": 1
+    },
+    "second_primary_call": "circuit open after 1 failures; retry in 30.0s"
+  },
+  "container_quarantine_files": [
+    "/data/quarantine/2026-10-26/quar_01aba458d74a4598ac24.json",
+    "/data/quarantine/2026-10-26/quar_800bc3dce4704a12920c.json",
+    "/data/quarantine/2026-10-26/quar_83bc832a5cf9454fa27d.json",
+    "/data/quarantine/2026-10-26/quar_affeb11b16fd438e90e4.json",
+    "/data/quarantine/2026-10-26/quar_c67ed01aa5e347ffbcd9.json",
+    "/data/quarantine/2026-10-26/quar_e870cada1fff4fbf9424.json",
+    "/data/quarantine/2026-10-26/quar_f6c1a1698caf4cd4b616.json"
+  ],
+  "notes": "All requests are synthetic. Costs use the configured shadow prices; the stub provider invoice is $0.00."
+}
