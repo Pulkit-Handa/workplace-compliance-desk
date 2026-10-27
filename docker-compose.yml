@@ -1,0 +1,218 @@
+name: compliance-desk
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: Dockerfile
+    target: runtime
+  image: compliance-desk:local
+  environment: &app-env
+    COMPLIANCE_ENV: production
+    LOG_LEVEL: INFO
+    PYTHONPATH: /app/src
+    REDIS_URL: redis://redis:6379/0
+    INDEX_DIR: /data/index
+    CORPUS_FILE: /app/corpus/provisions.jsonl
+    PROMPTS_DIR: /app/prompts
+    INDEX_MANIFEST: /app/corpus/sources/MANIFEST.json
+    QUARANTINE_DIR: /data/quarantine
+    PROMPT_VARIANT: v2
+    EMBEDDING_PROVIDER: hashing
+    EMBEDDING_DIM: "384"
+    QUEUE_BACKEND: redis
+    LLM_PROVIDER: stub_http
+    LLM_BASE_URL: http://stub-llm:8080/v1
+    LLM_MODEL: stub-compliance-1
+    LLM_TIMEOUT_S: "8"
+    # The stub provider has no invoice.  These shadow prices exercise cost
+    # accounting without pretending the stub is a paid model.
+    LLM_INPUT_COST_PER_MTOK: "0.15"
+    LLM_OUTPUT_COST_PER_MTOK: "0.60"
+    LLM_MAX_RETRIES: "2"
+    RATE_LIMIT_ENABLED: "true"
+    RATE_LIMIT_PER_MINUTE: "600"
+    RATE_LIMIT_BURST: "60"
+    SLO_P95_MS: "20000"
+    SLO_TARGET_RPS: "2"
+    OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318/v1/traces
+    OTEL_TRACES_SAMPLER_ARG: "1.0"
+  restart: unless-stopped
+
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.62.0
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16687:16686"
+    expose:
+      - "4318"
+    restart: unless-stopped
+
+  stub-llm:
+    <<: *app
+    command: ["python", "services/stub_llm.py", "--host", "0.0.0.0", "--port", "8080"]
+    environment:
+      <<: *app-env
+      STUB_LLM_DELAY_MS: "150"
+      STUB_LLM_FAIL_RATE: "0.0"
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  index-init:
+    <<: *app
+    command: ["python", "-m", "compliance.cli", "index", "build"]
+    restart: "no"
+    volumes:
+      - index-data:/data/index
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    command:
+      ["python", "-m", "compliance.cli", "serve", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - index-data:/data/index
+      - quarantine-data:/data/quarantine
+    depends_on:
+      redis:
+        condition: service_healthy
+      index-init:
+        condition: service_completed_successfully
+      stub-llm:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health/ready"]
+      interval: 15s
+      timeout: 5s
+      start_period: 20s
+      retries: 10
+    stop_grace_period: 30s
+
+  worker:
+    <<: *app
+    command: ["python", "-m", "compliance.cli", "worker"]
+    environment:
+      <<: *app-env
+      WORKER_METRICS_PORT: "9101"
+      WORKER_CONCURRENCY: "4"
+    expose:
+      - "9101"
+    volumes:
+      - index-data:/data/index
+    depends_on:
+      redis:
+        condition: service_healthy
+      index-init:
+        condition: service_completed_successfully
+      stub-llm:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:9101/metrics"]
+      interval: 15s
+      timeout: 5s
+      start_period: 15s
+      retries: 10
+    stop_grace_period: 30s
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro,z
+      - ./monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro,z
+      - prometheus-data:/prometheus
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro,z
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro,z
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+  locust:
+    <<: *app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: loadtest
+    image: compliance-desk-loadtest:local
+    profiles: ["loadtest"]
+    # Write CSV evidence as the invoking host user, not as uid 10001.
+    user: "${LOCUST_UID:-1000}:${LOCUST_GID:-1000}"
+    command:
+      - locust
+      - -f
+      - /app/loadtest/locustfile.py
+      - --host
+      - http://api:8000
+      - --headless
+      - --users
+      - "20"
+      - --spawn-rate
+      - "5"
+      - --run-time
+      - "90s"
+      - --only-summary
+      - --csv
+      - /app/reports/loadtest/locust
+    environment:
+      <<: *app-env
+      LOCUST_USERS: "20"
+      HOME: /tmp
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - ./reports/loadtest:/app/reports/loadtest:z
+    restart: "no"
+
+volumes:
+  redis-data:
+  index-data:
+  quarantine-data:
+  prometheus-data:
+  grafana-data:
