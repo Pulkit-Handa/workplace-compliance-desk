@@ -1,0 +1,64 @@
+groups:
+  - name: compliance-desk-slo
+    rules:
+      - alert: AdvisoryLatencyP95Breached
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(compliance_run_duration_seconds_bucket[5m])) by (le)
+          ) > 20
+        for: 5m
+        labels:
+          severity: warning
+          slo: p95_latency
+        annotations:
+          summary: "Advisory p95 latency is above the declared 20s SLO"
+          description: "p95 is {{ $value | humanize }}s over the last 5 minutes."
+
+      - alert: QueueBacklogGrowing
+        expr: compliance_queue_depth > 50
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Run queue depth is above 50"
+          description: "The worker is not keeping up with accepted runs."
+
+      - alert: ProviderFailuresElevated
+        expr: sum(rate(compliance_provider_failures_total[5m])) > 0.2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Model provider failures are elevated"
+          description: "Fallback drafts will be marked degraded; inspect the circuit breaker."
+
+      - alert: QuarantineSpike
+        expr: sum(rate(compliance_quarantine_total[5m])) > 1
+        for: 5m
+        labels:
+          severity: info
+        annotations:
+          summary: "Validation quarantine rate is elevated"
+          description: "Check data/quarantine for malformed or non-compliant payloads."
+
+      - alert: VerificationFailureRate
+        expr: |
+          sum(rate(compliance_verification_total{outcome="failed"}[15m]))
+          /
+          clamp_min(sum(rate(compliance_verification_total[15m])), 0.001) > 0.25
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "More than 25% of runs fail verification"
+          description: "The retrieval or prompt variant may have regressed."
+
+      - alert: GroundednessBelowFloor
+        expr: compliance_quality_groundedness{source="live"} < 0.85
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Sampled live groundedness is below 0.85"
+          description: "Inspect the eval report and recent retrievals before trusting new advisories."

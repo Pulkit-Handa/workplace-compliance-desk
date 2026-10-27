@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+  external_labels:
+    service: compliance-advisory-desk
+
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+scrape_configs:
+  - job_name: compliance-api
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["api:8000"]
+
+  - job_name: compliance-worker
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["worker:9101"]
+
+  - job_name: stub-llm
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["stub-llm:8080"]
