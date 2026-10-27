@@ -1,0 +1,4091 @@
+{
+  "meta": {
+    "generated_at": "2026-10-26T15:30:17.085696+00:00",
+    "golden_set": "/home/pulkithanda/Documents/MLSDA_mini/evals/golden.jsonl",
+    "cases": 24,
+    "variants": [
+      "v1",
+      "v2"
+    ],
+    "index_version": "idx-1793004115-b6107331",
+    "corpus_hash": "b6107331c04ebfb131c0f9a72a8a098faf8bc42345e78e0693324b96e4900046",
+    "embedding_provider": "hashing",
+    "llm_provider": "stub_local",
+    "evaluation_seconds": 1.14,
+    "execution": "in-process LangGraph pipeline; deterministic local provider",
+    "metric_definitions": {
+      "groundedness": "supported claims / claims checked",
+      "context_relevance": "relevant retrieved passages / all retrieved passages",
+      "context_recall": "required provisions retrieved in this run / required provisions",
+      "faithfulness": "mean passage-support score of cited non-escalation claims",
+      "hallucination_rate": "unsupported claims / claims checked",
+      "citation_precision": "cited provisions in the relevant set / all cited provisions",
+      "citation_recall": "required provisions cited / required provisions",
+      "qualifier_coverage": "required qualifier provisions cited / required qualifiers",
+      "route_accuracy": "actual route equals the expected route",
+      "verification_accuracy": "actual verification equals the expected verification"
+    },
+    "prompt_versions": {
+      "v1": {
+        "intake": "intake-v1",
+        "research": "research-v1",
+        "draft": "draft-v1",
+        "verify": "verify-v1",
+        "route": "route-v1"
+      },
+      "v2": {
+        "intake": "intake-v2",
+        "research": "research-v2",
+        "draft": "draft-v2",
+        "verify": "verify-v2",
+        "route": "route-v2"
+      }
+    }
+  },
+  "summary": {
+    "v1": {
+      "cases": 24,
+      "success_rate": 0.125,
+      "route_accuracy": 0.2083,
+      "verification_accuracy": 0.1667,
+      "answers_with_citation": 1,
+      "escalations": 23,
+      "degraded_runs": 0,
+      "latency_p50_ms": 13.0,
+      "latency_p95_ms": 18.09,
+      "latency_max_ms": 51.72,
+      "groundedness": 0.9618,
+      "context_relevance": 0.5486,
+      "context_recall": 0.5215,
+      "faithfulness": 0.794,
+      "hallucination_rate": 0.0382,
+      "citation_precision": 1.0,
+      "citation_recall": 0.5215,
+      "qualifier_coverage": 0.3958
+    },
+    "v2": {
+      "cases": 24,
+      "success_rate": 1.0,
+      "route_accuracy": 1.0,
+      "verification_accuracy": 1.0,
+      "answers_with_citation": 20,
+      "escalations": 4,
+      "degraded_runs": 0,
+      "latency_p50_ms": 27.16,
+      "latency_p95_ms": 37.26,
+      "latency_max_ms": 45.7,
+      "groundedness": 1.0,
+      "context_relevance": 0.6144,
+      "context_recall": 1.0,
+      "faithfulness": 0.7868,
+      "hallucination_rate": 0.0,
+      "citation_precision": 1.0,
+      "citation_recall": 1.0,
+      "qualifier_coverage": 1.0
+    }
+  },
+  "cases": [
+    {
+      "id": "fixed_expiry",
+      "title": "Fixed-term contract expires after three years",
+      "category": "repealed_act_boundary",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2",
+          "ssc2020-s53-2-third-proviso",
+          "ssc2020-s164-1"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2-third-proviso"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2",
+          "ssc2020-s53-2-third-proviso",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 51.72,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s164-1",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "gratuity1972-s4",
+              "ssc2020-s53-1",
+              "ssc2020-s164-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s60"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.8333,
+            "context_recall": 0.6667,
+            "faithfulness": 0.7575,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.6667,
+            "qualifier_coverage": 0.6667,
+            "expected_provisions_missing": [
+              "ssc2020-s53-2",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s60"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 51.72,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 5,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 33.84,
+            "claims": 9,
+            "claims_supported": 9,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s54",
+              "ssc2020-s53-2",
+              "ssc2020-s53-6",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "gratuity1972-s4",
+              "ssc2020-s53-1",
+              "ssc2020-s164-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6",
+              "gratuity1972-s4",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 20,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.85,
+            "context_recall": 1.0,
+            "faithfulness": 0.7833,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 33.84,
+            "claims": 9,
+            "claims_supported": 9,
+            "published_claims": 9,
+            "evidence_count": 20,
+            "citation_count": 10,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nUnder s. 53(1) of the Code on Social Security, 2020, gratuity is payable on termination of a fixed term contract; the second proviso waives the five-year condition on expiry and the third proviso to s. 53(2) requires a pro rata payment. The 1972 Act is repealed and is background only.\n\n**Provisions considered**\n\n1. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n2. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be no",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "resignation_7y",
+      "title": "Resignation after seven years: gratuity payable",
+      "category": "gratuity_entitlement",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 14.5,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s54"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s54",
+              "gratuity1972-s2a",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 0.3333,
+            "faithfulness": 0.8468,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-s53-2",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "ssc2020-s53-1-second-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 14.5,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 37.08,
+            "claims": 7,
+            "claims_supported": 7,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s54",
+              "ssc2020-s53-2",
+              "ssc2020-s53-6",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s54",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6"
+            ],
+            "evidence_count": 18,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.7222,
+            "context_recall": 1.0,
+            "faithfulness": 0.8071,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 37.08,
+            "claims": 7,
+            "claims_supported": 7,
+            "published_claims": 7,
+            "evidence_count": 18,
+            "citation_count": 8,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nGratuity is governed by s. 53 of the Code on Social Security, 2020: five years' continuous service is required at termination, the rate is fifteen days' wages per completed year under s. 53(2), and any forfeiture is confined to s. 53(6).\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n3. Code on So",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "resignation_3y",
+      "title": "Resignation after three years: no gratuity",
+      "category": "gratuity_threshold",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 18.09,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-s53-1"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "posh2013-s2",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s54",
+              "ssc2020-s53-6"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 0.5,
+            "faithfulness": 0.8731,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s2",
+              "ssc2020-s53-1-second-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 18.09,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 1,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 31.67,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "posh2013-s2",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6"
+            ],
+            "evidence_count": 19,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.6842,
+            "context_recall": 1.0,
+            "faithfulness": 0.8465,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s2",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 31.67,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 19,
+            "citation_count": 5,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the stated service the five-year continuous-service threshold in s. 53(1) is not met, so gratuity is not payable unless a statutory exception applies.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n3. Code on Social Security, 2020, s. First Schedule (Chapter V) — in force. \"Chapter V (Gratuity)",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "death",
+      "title": "Death in service after two years",
+      "category": "proviso_waiver",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1-second-proviso"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 16.41,
+            "claims": 5,
+            "claims_supported": 5,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s54",
+              "ssc2020-s53-2"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-2",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s54"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 1.0,
+            "context_recall": 0.75,
+            "faithfulness": 0.7282,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.75,
+            "qualifier_coverage": 0.5,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 16.41,
+            "claims": 5,
+            "claims_supported": 5,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 4,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 31.77,
+            "claims": 6,
+            "claims_supported": 6,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-2",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e"
+            ],
+            "evidence_count": 13,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.6923,
+            "context_recall": 1.0,
+            "faithfulness": 0.7569,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 31.77,
+            "claims": 6,
+            "claims_supported": 6,
+            "published_claims": 6,
+            "evidence_count": 13,
+            "citation_count": 7,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nUnder s. 53(1) and its second proviso, gratuity is payable without five years' continuous service where termination is due to death, disablement, or expiry of a fixed term contract. The 1972 Act is repealed and is background only.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n3. Code on Social Se",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "coverage_unknown",
+      "title": "Seven-person startup and the coverage threshold",
+      "category": "coverage_threshold",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s1-4",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 10.45,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "posh2013-s2",
+              "ssc2020-s53-2-third-proviso",
+              "gratuity1972-s1",
+              "posh2013-s11",
+              "posh2013-s2",
+              "ssc2020-s2-26"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 0.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.0,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s1",
+              "posh2013-s11",
+              "posh2013-s2",
+              "ssc2020-s2-26",
+              "ssc2020-s53-2-third-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 10.45,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 0,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 27.18,
+            "claims": 7,
+            "claims_supported": 7,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s54",
+              "ssc2020-s53-2",
+              "ssc2020-s53-6",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "posh2013-s2",
+              "ssc2020-s53-2-third-proviso",
+              "gratuity1972-s1",
+              "posh2013-s11",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2"
+            ],
+            "evidence_count": 28,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.4286,
+            "context_recall": 1.0,
+            "faithfulness": 0.7821,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s1",
+              "posh2013-s11",
+              "posh2013-s2",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 27.18,
+            "claims": 7,
+            "claims_supported": 7,
+            "published_claims": 7,
+            "evidence_count": 28,
+            "citation_count": 8,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the stated headcount the establishment is outside Chapter V (Gratuity), which applies to a shop or establishment with ten or more employees. The cited threshold is in the First Schedule.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n3. Code on Social Security, 2020, s. 53(2) — in force. \"For e",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "maternity",
+      "title": "Maternity benefit with two children",
+      "category": "maternity_benefit",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60",
+          "ssc2020-s64",
+          "ssc2020-s66",
+          "ssc2020-s67",
+          "ssc2020-s1-4",
+          "ssc2020-s62",
+          "ssc2020-s63",
+          "ssc2020-s65",
+          "ssc2020-s68",
+          "ssc2020-s69",
+          "ssc2020-s70"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 17.16,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "ssc2020-s60",
+              "ssc2020-s60"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s54",
+              "ssc2020-s70",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s62"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter VI coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "maternity benefit applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.8333,
+            "context_recall": 0.5,
+            "faithfulness": 0.8575,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 0.5,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s54"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 17.16,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 30.96,
+            "claims": 8,
+            "claims_supported": 8,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s64",
+              "ssc2020-s66",
+              "ssc2020-s67"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s54",
+              "ssc2020-s70",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s69",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s1-4",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s68",
+              "posh2013-s11",
+              "ssc2020-s64",
+              "ssc2020-s65",
+              "ssc2020-s60",
+              "ssc2020-s67",
+              "ssc2020-s67",
+              "ssc2020-s66",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54"
+            ],
+            "evidence_count": 21,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 1.0,
+            "faithfulness": 0.856,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s11",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s54",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 30.96,
+            "claims": 8,
+            "claims_supported": 8,
+            "published_claims": 8,
+            "evidence_count": 21,
+            "citation_count": 6,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nMaternity benefit under Chapter VI requires eighty days of actual work in the twelve months before the expected delivery and provides up to twenty-six weeks of benefit, with medical bonus and nursing breaks. The cited provisions state each condition.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 60 — in force. \"herself on account of maternity, subject to the minimum rate of wage fixed or revised under the Code on Wages, 2019. (2) No woman shall be entitled to maternity benefit unless she has actually worked in an establishment of the employer from whom she claims maternity benefit, for a period of not less than eighty days in the twelve months immediately preceding the date of her expected delivery. Explanation.-For the purposes of calculating the period under this sub-section, the days on which a woman has actually wo…\"\n2. Code on Social Security, 2020, s. 60 — in force. \"benefit shall be twenty-six weeks of which not more than eight weeks shall precede the expected date of her delivery: Provided that the maximum period entitled to maternity benefit by a woman having two or more surviving children shall be twelve weeks of which not more than six wee",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "historical",
+      "title": "Gratuity as at 1 June 2024 under the 1972 Act",
+      "category": "historical_regime",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "gratuity1972-s1",
+          "gratuity1972-s4"
+        ],
+        "qualifier_provisions": [],
+        "relevant_provisions": [
+          "gratuity1972-s1",
+          "gratuity1972-s4"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 12.32,
+            "claims": 3,
+            "claims_supported": 2,
+            "citation_ids": [
+              "gratuity1972-s4",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-6",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-1-first-proviso",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "clm_03",
+                "reason": "weak_passage_support",
+                "detail": "Only 12% of the claim's content words occur in the cited passage (minimum 18%).",
+                "suggested_query": "Payment of Gratuity Act 1972 section 4"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 0.6667,
+            "context_relevance": 0.3333,
+            "context_recall": 0.5,
+            "faithfulness": 0.4527,
+            "hallucination_rate": 0.3333,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [
+              "gratuity1972-s1"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-6"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 12.32,
+            "claims": 3,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "weak_passage_support"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (weak_passage_support). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: weak_passage_support"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 19.3,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "gratuity1972-s4",
+              "gratuity1972-s1",
+              "gratuity1972-s4",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-6",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-first-proviso",
+              "gratuity1972-s1",
+              "gratuity1972-s1",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 9,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.5556,
+            "context_recall": 1.0,
+            "faithfulness": 0.5761,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-6"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 19.3,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 9,
+            "citation_count": 4,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the requested date the Payment of Gratuity Act, 1972 governs. The cited provisions state the five-year continuous-service rule and the death or disablement exception.\n\n**Provisions considered**\n\n1. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease: Provided that the completion of continuous service of five years shall not be necessary where the termination of the employment of any employee is due to death or disablement: [Provided further that in the case of death of the employee, gratuity payable to him shall be paid to his nominee or, if no nomination has been made, to his heirs, and where any s",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "posh_policy",
+      "title": "POSH committee and complaint timeline",
+      "category": "posh_policy",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11"
+        ],
+        "qualifier_provisions": [
+          "posh2013-s4"
+        ],
+        "relevant_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11",
+          "posh2013-s26",
+          "posh2013-s1",
+          "posh2013-s2",
+          "posh2013-s14",
+          "posh2013-s19",
+          "posh2013-s21"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 13.39,
+            "claims": 3,
+            "claims_supported": 3,
+            "citation_ids": [
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s26"
+            ],
+            "retrieved_ids": [
+              "posh2013-s2",
+              "posh2013-s9",
+              "posh2013-s26",
+              "posh2013-s11",
+              "posh2013-s21",
+              "posh2013-s9"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Internal Complaints Committee duty is the core POSH obligation; the provision is absent from the draft's operative citations.",
+                "suggested_query": "Internal Complaints Committee constitution POSH section 4"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 1.0,
+            "context_recall": 0.6667,
+            "faithfulness": 0.6599,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.6667,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "posh2013-s4"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 13.39,
+            "claims": 3,
+            "claims_supported": 3,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 3,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 23.45,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s26"
+            ],
+            "retrieved_ids": [
+              "posh2013-s2",
+              "posh2013-s9",
+              "posh2013-s26",
+              "posh2013-s11",
+              "posh2013-s21",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s14",
+              "ssc2020-s60",
+              "posh2013-s1",
+              "ssc2020-s64",
+              "ssc2020-s1-4",
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s26",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s2",
+              "posh2013-s14"
+            ],
+            "evidence_count": 27,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.8889,
+            "context_recall": 1.0,
+            "faithfulness": 0.6981,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s1-4",
+              "ssc2020-s60",
+              "ssc2020-s64"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 23.45,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 27,
+            "citation_count": 4,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe POSH Act, 2013 requires every employer to constitute an Internal Complaints Committee, provides a three-month complaint window, and sets a fine of up to ₹50,000 for non-compliance.\n\n**Provisions considered**\n\n1. POSH Act, 2013, s. 9 — in force. \"9. Complaint of sexual harassment.-(1) Any aggrieved woman may make, in writing, a complaint of sexual harassment at workplace to the Internal Committee if so constituted, or the Local Committee, in case it is not so constituted, within a period of three months from the date of incident and in case of a series of incidents, within a period of three months from the date of last incident: Provided that where such complaint cannot be made in writing, the Presiding Officer or any Member of the Internal Committee or…\"\n2. POSH Act, 2013, s. 26 — in force. \"26. Penalty for non-compliance with provisions of Act.-(1) Where the employer fails to- (a) constitute an Internal Committee under sub-section (1) of section 4; (b) take action under sections 13, 14 and 22; and (c) contravenes or attempts to contravene or abets contravention of other provisions of this Act or any rules made thereunder, he shall be punishable with fine which may",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "posh_complaint",
+      "title": "Specific harassment complaint: escalation boundary",
+      "category": "escalation_boundary",
+      "expected": {
+        "route": "legal_counsel_review",
+        "verification": "passed",
+        "required_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11"
+        ],
+        "qualifier_provisions": [
+          "posh2013-s4"
+        ],
+        "relevant_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11",
+          "posh2013-s26",
+          "posh2013-s1",
+          "posh2013-s2",
+          "posh2013-s14",
+          "posh2013-s19",
+          "posh2013-s21"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 10.05,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "posh2013-s9"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s72",
+              "posh2013-s19",
+              "ssc2020-s62",
+              "ssc2020-s68",
+              "posh2013-s9",
+              "posh2013-s1"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Internal Complaints Committee duty is the core POSH obligation; the provision is absent from the draft's operative citations.",
+                "suggested_query": "Internal Complaints Committee constitution POSH section 4"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": true,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.5,
+            "context_recall": 0.3333,
+            "faithfulness": 0.8889,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "posh2013-s11",
+              "posh2013-s4"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s62",
+              "ssc2020-s68",
+              "ssc2020-s72"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 10.05,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 1,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Refer the complaint to the Internal Complaints Committee constituted under s. 4 of the POSH Act.\n- Preserve confidentiality under s. 16 and follow the inquiry procedure in s. 11.\n- Involve employment counsel before any adverse action against any person.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "The request asks the desk to decide or act on a specific harassment complaint."
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 23.08,
+            "claims": 5,
+            "claims_supported": 5,
+            "citation_ids": [
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s26",
+              "posh2013-s4",
+              "posh2013-s11"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s72",
+              "posh2013-s19",
+              "ssc2020-s62",
+              "ssc2020-s68",
+              "posh2013-s21",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s14",
+              "ssc2020-s60",
+              "posh2013-s1",
+              "posh2013-s11",
+              "posh2013-s26",
+              "ssc2020-s64",
+              "ssc2020-s1-4",
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s26",
+              "ssc2020-s72",
+              "posh2013-s14",
+              "posh2013-s19"
+            ],
+            "evidence_count": 25,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.72,
+            "context_recall": 1.0,
+            "faithfulness": 0.6981,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s1-4",
+              "ssc2020-s60",
+              "ssc2020-s62",
+              "ssc2020-s64",
+              "ssc2020-s68",
+              "ssc2020-s72"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 23.08,
+            "claims": 5,
+            "claims_supported": 5,
+            "published_claims": 5,
+            "evidence_count": 25,
+            "citation_count": 6,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request concerns a specific harassment complaint. The POSH Act requires an Internal Complaints Committee and a time-bound inquiry, but the desk cannot decide the complaint; it is escalated with the governing provisions.\n\n**Provisions considered**\n\n1. POSH Act, 2013, s. 4 — in force. \"4. Constitution of Internal Complaints Committee.- (1) Every employer of a workplace shall, by an order in writing, constitute a Committee to be known as the \"Internal Complaints Committee\": Provided that where the offices or administrative units of the workplace are located at different places or divisional or sub-divisional level, the Internal Committee shall be constituted at all administrative units or offices. (2) The Internal Committees shall consist of the following members to be nominated by the employer…\"\n2. POSH Act, 2013, s. 11 — in force. \"11. Inquiry into complaint.- (1) Subject to the provisions of section 10, the Internal Committee or the Local Committee, as the case may be, shall, where the respondent is an employee, proceed to make inquiry into the complaint in accordance with the provisions of the service rules applicable to the respondent and where no such rules exis",
+          "route_basis": "The request asks the desk to decide or act on a specific harassment complaint."
+        }
+      }
+    },
+    {
+      "id": "outside",
+      "title": "Out-of-scope minimum wage question",
+      "category": "out_of_scope",
+      "expected": {
+        "route": "legal_counsel_review",
+        "verification": "passed",
+        "required_provisions": [],
+        "qualifier_provisions": [],
+        "relevant_provisions": []
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 8.72,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s63",
+              "ssc2020-s66",
+              "ssc2020-s69",
+              "posh2013-s2"
+            ],
+            "evidence_count": 6,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 1.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s2",
+              "ssc2020-s60",
+              "ssc2020-s63",
+              "ssc2020-s66",
+              "ssc2020-s69"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 8.72,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 1,
+            "evidence_count": 6,
+            "citation_count": 0,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request falls outside the indexed corpus and is escalated without a legal conclusion.\n\n\n**Analysis**\n\n- Escalation: The request does not identify a provision in the indexed corpus that answers it. The desk does not answer outside its indexed sources.\n\n**Next steps**\n\n- Route the request to employment counsel; do not answer from an unrelated provision.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "No indexed provision addresses the request."
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 8.95,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s63",
+              "ssc2020-s66",
+              "ssc2020-s60",
+              "ssc2020-s60"
+            ],
+            "evidence_count": 6,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 1.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s60",
+              "ssc2020-s63",
+              "ssc2020-s66"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 8.95,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 1,
+            "evidence_count": 6,
+            "citation_count": 0,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request falls outside the indexed corpus and is escalated without a legal conclusion.\n\n\n**Analysis**\n\n- Escalation: The request does not identify a provision in the indexed corpus that answers it. The desk does not answer outside its indexed sources.\n\n**Next steps**\n\n- Route the request to employment counsel; do not answer from an unrelated provision.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "No indexed provision addresses the request."
+        }
+      }
+    },
+    {
+      "id": "fixed_expiry_18m",
+      "title": "The section 4.1 case: 18-month fixed term expires after commencement",
+      "category": "hard_case",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2",
+          "ssc2020-s53-2-third-proviso"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2-third-proviso"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2-third-proviso"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 11.39,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s2-34",
+              "commencement2025-ss-o-5322-e",
+              "posh2013-s4"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "expiration of a fixed term employment waives the five-year condition under the second proviso to s. 53(1); the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity five years not necessary death disablement expiry fixed term proviso"
+              },
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 0.6,
+            "faithfulness": 0.7944,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.6,
+            "qualifier_coverage": 0.3333,
+            "expected_provisions_missing": [
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "commencement2025-ss-o-5322-e",
+              "posh2013-s4"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 11.39,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 3,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing; qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 27.15,
+            "claims": 9,
+            "claims_supported": 9,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s54",
+              "ssc2020-s53-2",
+              "ssc2020-s53-6",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s60",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6"
+            ],
+            "evidence_count": 18,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.8333,
+            "context_recall": 1.0,
+            "faithfulness": 0.7833,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 27.15,
+            "claims": 9,
+            "claims_supported": 9,
+            "published_claims": 9,
+            "evidence_count": 18,
+            "citation_count": 10,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nUnder s. 53(1) of the Code on Social Security, 2020, gratuity is payable on termination of a fixed term contract; the second proviso waives the five-year condition on expiry and the third proviso to s. 53(2) requires a pro rata payment. The 1972 Act is repealed and is background only.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Code on Social Security, 2020, s. 53(2) (third proviso) — in force. \"Provided also that in the case of an employee employed on fixed term employment or a deceased employee, the employer shall pay gratuity on pro rata basis.\"\n3. Code on Social Security, 2020, s. 53(2) — in force. \"For every completed year of service or part thereof in excess of six months, the employer sha",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "fixed_term_running",
+      "title": "Fixed-term employee still in service",
+      "category": "gratuity_lifecycle",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2-third-proviso"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-2-third-proviso"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34",
+          "ssc2020-s53-1-second-proviso",
+          "ssc2020-s53-2-third-proviso"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 10.07,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s2-34",
+              "gratuity1972-s4",
+              "ssc2020-s68"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.8333,
+            "context_recall": 0.6667,
+            "faithfulness": 0.675,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.6667,
+            "qualifier_coverage": 0.5,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s68"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 10.07,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 21.34,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s2-34",
+              "gratuity1972-s4",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e"
+            ],
+            "evidence_count": 13,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.7692,
+            "context_recall": 1.0,
+            "faithfulness": 0.7474,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 21.34,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 13,
+            "citation_count": 6,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the stated service the five-year continuous-service threshold in s. 53(1) is not met, so gratuity is not payable unless a statutory exception applies.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Code on Social Security, 2020, s. 53(2) (third proviso) — in force. \"Provided also that in the case of an employee employed on fixed term employment or a deceased employee, the employer shall pay gratuity on pro rata basis.\"\n3. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "resignation_5y_exact",
+      "title": "Resignation at exactly five years",
+      "category": "gratuity_threshold",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 12.62,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s54"
+            ],
+            "retrieved_ids": [
+              "gratuity1972-s4",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s54",
+              "posh2013-s14"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 0.3333,
+            "faithfulness": 0.8468,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-s53-2",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s14",
+              "ssc2020-s53-1-second-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 12.62,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 28.24,
+            "claims": 7,
+            "claims_supported": 7,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s54",
+              "ssc2020-s53-2",
+              "ssc2020-s53-6",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "gratuity1972-s4",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 20,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.75,
+            "context_recall": 1.0,
+            "faithfulness": 0.8071,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 28.24,
+            "claims": 7,
+            "claims_supported": 7,
+            "published_claims": 7,
+            "evidence_count": 20,
+            "citation_count": 8,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nGratuity is governed by s. 53 of the Code on Social Security, 2020: five years' continuous service is required at termination, the rate is fifteen days' wages per completed year under s. 53(2), and any forfeiture is confined to s. 53(6).\n\n**Provisions considered**\n\n1. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n2. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n3. Code on So",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "resignation_59m",
+      "title": "Resignation one month short of five years",
+      "category": "gratuity_threshold",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 12.15,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-s53-1"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-2",
+              "gratuity1972-s2a",
+              "posh2013-s14",
+              "ssc2020-s54"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 0.5,
+            "faithfulness": 0.8731,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "posh2013-s14"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 12.15,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 1,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 21.97,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-2",
+              "gratuity1972-s2a",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s53-6"
+            ],
+            "evidence_count": 19,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.6842,
+            "context_recall": 1.0,
+            "faithfulness": 0.8465,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 21.97,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 19,
+            "citation_count": 5,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the stated service the five-year continuous-service threshold in s. 53(1) is not met, so gratuity is not payable unless a statutory exception applies.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n3. Code on Social Security, 2020, s. First Schedule (Chapter V) — in force. \"Chapter V (Gratuity)",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "death_1y",
+      "title": "Death after one year: waiver of five years",
+      "category": "gratuity_waiver",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1-second-proviso"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34",
+          "ssc2020-s53-1-second-proviso"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 11.76,
+            "claims": 3,
+            "claims_supported": 3,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2",
+              "gratuity1972-s4",
+              "posh2013-s14",
+              "gratuity1972-s2a",
+              "posh2013-s19"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "death or disablement waives the five-year condition under the second proviso to s. 53(1); the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity five years not necessary death disablement expiry fixed term proviso"
+              },
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.5,
+            "context_recall": 0.3333,
+            "faithfulness": 0.7887,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "posh2013-s14",
+              "posh2013-s19"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 11.76,
+            "claims": 3,
+            "claims_supported": 3,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing; qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 25.67,
+            "claims": 6,
+            "claims_supported": 6,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-2",
+              "gratuity1972-s4",
+              "posh2013-s14",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e"
+            ],
+            "evidence_count": 14,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.6429,
+            "context_recall": 1.0,
+            "faithfulness": 0.751,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s14",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 25.67,
+            "claims": 6,
+            "claims_supported": 6,
+            "published_claims": 6,
+            "evidence_count": 14,
+            "citation_count": 7,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nUnder s. 53(1) and its second proviso, gratuity is payable without five years' continuous service where termination is due to death, disablement, or expiry of a fixed term contract. The 1972 Act is repealed and is background only.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Code on Social Security, 2020, s. 53(2) — in force. \"For every completed year of service or part thereof in excess of six months, the employer shall pay gratuity to an employee at the rate of fifteen days' wages or such number of days as may be notified by the Central Government, based on the rate of wages last drawn by the employee concerned.\"\n3. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "disablement_4y",
+      "title": "Disablement after four years: waiver of five years",
+      "category": "gratuity_waiver",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-1-second-proviso"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1-second-proviso"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-v",
+          "ssc2020-s53-1",
+          "ssc2020-s53-2",
+          "ssc2020-s53-6",
+          "ssc2020-s54",
+          "ssc2020-s164-1",
+          "commencement2025-ss-o-5319-e",
+          "gratuity1972-s4",
+          "ssc2020-s1-4",
+          "ssc2020-s2-34",
+          "ssc2020-s53-1-second-proviso"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 11.45,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-s53-1",
+              "ssc2020-s54"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "gratuity1972-s4",
+              "ssc2020-s54",
+              "ssc2020-s53-2-third-proviso",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "death or disablement waives the five-year condition under the second proviso to s. 53(1); the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity five years not necessary death disablement expiry fixed term proviso"
+              },
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter V coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "gratuity applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.8333,
+            "context_recall": 0.3333,
+            "faithfulness": 0.8468,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-2-third-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 11.45,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing; qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 28.25,
+            "claims": 7,
+            "claims_supported": 7,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s54",
+              "ssc2020-s53-2",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "gratuity1972-s4",
+              "ssc2020-s54",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s53-2",
+              "ssc2020-s60",
+              "ssc2020-s2-34",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s1-4",
+              "ssc2020-s164-1",
+              "commencement2025-ss-o-5319-e"
+            ],
+            "evidence_count": 15,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.7333,
+            "context_recall": 1.0,
+            "faithfulness": 0.7493,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-2-third-proviso",
+              "ssc2020-s60",
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 28.25,
+            "claims": 7,
+            "claims_supported": 7,
+            "published_claims": 7,
+            "evidence_count": 15,
+            "citation_count": 8,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nUnder s. 53(1) and its second proviso, gratuity is payable without five years' continuous service where termination is due to death, disablement, or expiry of a fixed term contract. The 1972 Act is repealed and is background only.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 53(1) — in force. \"Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation; or (b) on his retirement or resignation; or (c) on his death or disablement due to accident or disease; or (d) on termination of his contract period under fixed term employment; or (e) on happening of any such event as may be notified by the Central Government.\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n3. Code on Social Se",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "maternity_80_days",
+      "title": "Maternity eligibility at exactly eighty days",
+      "category": "maternity_eligibility",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60",
+          "ssc2020-s64",
+          "ssc2020-s66",
+          "ssc2020-s67",
+          "ssc2020-s1-4",
+          "ssc2020-s62",
+          "ssc2020-s63",
+          "ssc2020-s65",
+          "ssc2020-s68",
+          "ssc2020-s69",
+          "ssc2020-s70"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 16.19,
+            "claims": 3,
+            "claims_supported": 3,
+            "citation_ids": [
+              "ssc2020-s60"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "gratuity1972-s2a",
+              "ssc2020-s60"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Chapter VI coverage threshold must be addressed; the provision is absent from the draft's operative citations.",
+                "suggested_query": "maternity benefit applicability ten or more employees first schedule"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.3333,
+            "context_recall": 0.5,
+            "faithfulness": 0.8905,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 0.5,
+            "expected_provisions_missing": [
+              "ssc2020-sfirst-schedule-chapter-vi"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "ssc2020-s54"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 16.19,
+            "claims": 3,
+            "claims_supported": 3,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 1,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 32.0,
+            "claims": 7,
+            "claims_supported": 7,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s60",
+              "ssc2020-s64",
+              "ssc2020-s66",
+              "ssc2020-s67"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s60",
+              "ssc2020-s69",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s1-4",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s68",
+              "posh2013-s11",
+              "ssc2020-s64",
+              "ssc2020-s65",
+              "ssc2020-s70",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s67",
+              "ssc2020-s67",
+              "ssc2020-s66",
+              "ssc2020-s54"
+            ],
+            "evidence_count": 21,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 1.0,
+            "faithfulness": 0.8699,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s11",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s54",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 32.0,
+            "claims": 7,
+            "claims_supported": 7,
+            "published_claims": 7,
+            "evidence_count": 21,
+            "citation_count": 5,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nMaternity benefit under Chapter VI requires eighty days of actual work in the twelve months before the expected delivery and provides up to twenty-six weeks of benefit, with medical bonus and nursing breaks. The cited provisions state each condition.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 60 — in force. \"herself on account of maternity, subject to the minimum rate of wage fixed or revised under the Code on Wages, 2019. (2) No woman shall be entitled to maternity benefit unless she has actually worked in an establishment of the employer from whom she claims maternity benefit, for a period of not less than eighty days in the twelve months immediately preceding the date of her expected delivery. Explanation.-For the purposes of calculating the period under this sub-section, the days on which a woman has actually wo…\"\n2. Code on Social Security, 2020, s. First Schedule (Chapter VI) — in force. \"Chapter VI (Maternity Benefit) applies to: (a) every establishment being a factory, mine or plantation including any such establishment belonging to Government; and (b) every shop or establishment in which ten or more employees are employed, or were employe",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "maternity_creche_50",
+      "title": "Maternity benefit and crèche at fifty employees",
+      "category": "maternity_ancillary",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60",
+          "ssc2020-s67"
+        ],
+        "qualifier_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60"
+        ],
+        "relevant_provisions": [
+          "ssc2020-sfirst-schedule-chapter-vi",
+          "ssc2020-s60",
+          "ssc2020-s64",
+          "ssc2020-s66",
+          "ssc2020-s67",
+          "ssc2020-s1-4",
+          "ssc2020-s62",
+          "ssc2020-s63",
+          "ssc2020-s65",
+          "ssc2020-s68",
+          "ssc2020-s69",
+          "ssc2020-s70"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 16.78,
+            "claims": 3,
+            "claims_supported": 2,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s64",
+              "ssc2020-s67"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s64",
+              "ssc2020-s67",
+              "ssc2020-s54",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s62",
+              "gratuity1972-s2a"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "clm_03",
+                "reason": "weak_passage_support",
+                "detail": "Only 41% of the claim's content words occur in the cited passage (minimum 45%).",
+                "suggested_query": "An employee with 100 days of service and two children is expecting. What maternity benefit and crèche obligation apply?"
+              },
+              {
+                "claim_id": "clm_03",
+                "reason": "number_not_supported",
+                "detail": "Number(s) [4] do not appear in the cited passage.",
+                "suggested_query": "An employee with 100 days of service and two children is expecting. What maternity benefit and crèche obligation apply?"
+              },
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "eligibility and duration are set by s. 60; the provision is absent from the draft's operative citations.",
+                "suggested_query": "maternity benefit eighty days twenty six weeks section 60"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 0.6667,
+            "context_relevance": 0.6667,
+            "context_recall": 0.6667,
+            "faithfulness": 0.7328,
+            "hallucination_rate": 0.3333,
+            "citation_precision": 1.0,
+            "citation_recall": 0.6667,
+            "qualifier_coverage": 0.5,
+            "expected_provisions_missing": [
+              "ssc2020-s60"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "ssc2020-s54"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 16.78,
+            "claims": 3,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 3,
+            "issue_reasons": [
+              "number_not_supported",
+              "qualifier_missing",
+              "weak_passage_support"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (weak_passage_support). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: weak_passage_support; number_not_supported; qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 45.7,
+            "claims": 8,
+            "claims_supported": 8,
+            "citation_ids": [
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s64",
+              "ssc2020-s66",
+              "ssc2020-s67"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s64",
+              "ssc2020-s67",
+              "ssc2020-s54",
+              "ssc2020-sfirst-schedule-chapter-vi",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s54",
+              "ssc2020-s69",
+              "ssc2020-sfirst-schedule-chapter-v",
+              "ssc2020-s1-4",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s68",
+              "posh2013-s11",
+              "ssc2020-s65",
+              "ssc2020-s70",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s67",
+              "ssc2020-s66"
+            ],
+            "evidence_count": 19,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.7368,
+            "context_recall": 1.0,
+            "faithfulness": 0.856,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s11",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s54",
+              "ssc2020-sfirst-schedule-chapter-v"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 45.7,
+            "claims": 8,
+            "claims_supported": 8,
+            "published_claims": 8,
+            "evidence_count": 19,
+            "citation_count": 6,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nMaternity benefit under Chapter VI requires eighty days of actual work in the twelve months before the expected delivery and provides up to twenty-six weeks of benefit, with medical bonus and nursing breaks. The cited provisions state each condition.\n\n**Provisions considered**\n\n1. Code on Social Security, 2020, s. 64 — in force. \"Every woman entitled to maternity benefit under this Chapter shall also be entitled to receive from her employer a medical bonus of three thousand five hundred rupees or such amount as may be notified by the Central Government, if no pre-natal confinement and post-natal care is provided for by the employer free of charge.\"\n2. Code on Social Security, 2020, s. First Schedule (Chapter VI) — in force. \"Chapter VI (Maternity Benefit) applies to: (a) every establishment being a factory, mine or plantation including any such establishment belonging to Government; and (b) every shop or establishment in which ten or more employees are employed, or were employed, on any day of the preceding twelve months; and such other shops or establishments notified by the appropriate Government.\"\n3. Code on Social Security, 2020, s. 60 — in force. \"herself on accou",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "posh_committee_20",
+      "title": "POSH committee at a twenty-person workplace",
+      "category": "posh_policy",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11"
+        ],
+        "qualifier_provisions": [
+          "posh2013-s4"
+        ],
+        "relevant_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11",
+          "posh2013-s16",
+          "posh2013-s26",
+          "posh2013-s1",
+          "posh2013-s2",
+          "posh2013-s14",
+          "posh2013-s19",
+          "posh2013-s21"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 15.96,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [
+              "posh2013-s26"
+            ],
+            "retrieved_ids": [
+              "posh2013-s26",
+              "posh2013-s3",
+              "posh2013-s2",
+              "posh2013-s19",
+              "posh2013-s2",
+              "posh2013-s21"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Internal Complaints Committee duty is the core POSH obligation; the provision is absent from the draft's operative citations.",
+                "suggested_query": "Internal Complaints Committee constitution POSH section 4"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.8333,
+            "context_recall": 0.0,
+            "faithfulness": 0.5909,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.0,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "posh2013-s11",
+              "posh2013-s4",
+              "posh2013-s9"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s3"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 15.96,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 1,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 37.26,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s26"
+            ],
+            "retrieved_ids": [
+              "posh2013-s26",
+              "posh2013-s3",
+              "posh2013-s2",
+              "posh2013-s19",
+              "posh2013-s21",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s14",
+              "ssc2020-s60",
+              "posh2013-s1",
+              "posh2013-s11",
+              "ssc2020-s64",
+              "ssc2020-s1-4",
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s26",
+              "posh2013-s14",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s60"
+            ],
+            "evidence_count": 25,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.72,
+            "context_recall": 1.0,
+            "faithfulness": 0.6981,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s3",
+              "ssc2020-s1-4",
+              "ssc2020-s60",
+              "ssc2020-s64"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 37.26,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 25,
+            "citation_count": 4,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe POSH Act, 2013 requires every employer to constitute an Internal Complaints Committee, provides a three-month complaint window, and sets a fine of up to ₹50,000 for non-compliance.\n\n**Provisions considered**\n\n1. POSH Act, 2013, s. 26 — in force. \"26. Penalty for non-compliance with provisions of Act.-(1) Where the employer fails to- (a) constitute an Internal Committee under sub-section (1) of section 4; (b) take action under sections 13, 14 and 22; and (c) contravenes or attempts to contravene or abets contravention of other provisions of this Act or any rules made thereunder, he shall be punishable with fine which may extend to fifty thousand rupees. (2) If any employer, after having been previously convicted of an offence punishable under this Act sub…\"\n2. POSH Act, 2013, s. 4 — in force. \"4. Constitution of Internal Complaints Committee.- (1) Every employer of a workplace shall, by an order in writing, constitute a Committee to be known as the \"Internal Complaints Committee\": Provided that where the offices or administrative units of the workplace are located at different places or divisional or sub-divisional level, the Internal Committee shall be constituted ",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "posh_timeline",
+      "title": "POSH complaint deadline and extension",
+      "category": "posh_policy",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11"
+        ],
+        "qualifier_provisions": [
+          "posh2013-s4"
+        ],
+        "relevant_provisions": [
+          "posh2013-s4",
+          "posh2013-s9",
+          "posh2013-s11",
+          "posh2013-s16",
+          "posh2013-s26",
+          "posh2013-s1",
+          "posh2013-s2",
+          "posh2013-s14",
+          "posh2013-s19",
+          "posh2013-s21"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 16.59,
+            "claims": 2,
+            "claims_supported": 2,
+            "citation_ids": [
+              "posh2013-s9",
+              "posh2013-s16"
+            ],
+            "retrieved_ids": [
+              "posh2013-s9",
+              "posh2013-s19",
+              "posh2013-s13",
+              "posh2013-s13",
+              "posh2013-s16",
+              "posh2013-s19"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "qualifiers",
+                "reason": "qualifier_missing",
+                "detail": "the Internal Complaints Committee duty is the core POSH obligation; the provision is absent from the draft's operative citations.",
+                "suggested_query": "Internal Complaints Committee constitution POSH section 4"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 1.0,
+            "context_relevance": 0.6667,
+            "context_recall": 0.3333,
+            "faithfulness": 0.7361,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.3333,
+            "qualifier_coverage": 0.0,
+            "expected_provisions_missing": [
+              "posh2013-s11",
+              "posh2013-s4"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s13"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 16.59,
+            "claims": 2,
+            "claims_supported": 2,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "qualifier_missing"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (qualifier_missing). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: qualifier_missing"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 31.11,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s26"
+            ],
+            "retrieved_ids": [
+              "posh2013-s9",
+              "posh2013-s19",
+              "posh2013-s13",
+              "posh2013-s13",
+              "posh2013-s21",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s4",
+              "posh2013-s14",
+              "ssc2020-s60",
+              "posh2013-s1",
+              "posh2013-s11",
+              "posh2013-s26",
+              "ssc2020-s64",
+              "ssc2020-s1-4",
+              "posh2013-s4",
+              "posh2013-s9",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s26",
+              "posh2013-s19",
+              "posh2013-s14",
+              "posh2013-s13"
+            ],
+            "evidence_count": 24,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.75,
+            "context_recall": 1.0,
+            "faithfulness": 0.6981,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s13",
+              "ssc2020-s1-4",
+              "ssc2020-s60",
+              "ssc2020-s64"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 31.11,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 24,
+            "citation_count": 4,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe POSH Act, 2013 requires every employer to constitute an Internal Complaints Committee, provides a three-month complaint window, and sets a fine of up to ₹50,000 for non-compliance.\n\n**Provisions considered**\n\n1. POSH Act, 2013, s. 9 — in force. \"9. Complaint of sexual harassment.-(1) Any aggrieved woman may make, in writing, a complaint of sexual harassment at workplace to the Internal Committee if so constituted, or the Local Committee, in case it is not so constituted, within a period of three months from the date of incident and in case of a series of incidents, within a period of three months from the date of last incident: Provided that where such complaint cannot be made in writing, the Presiding Officer or any Member of the Internal Committee or…\"\n2. POSH Act, 2013, s. 4 — in force. \"4. Constitution of Internal Complaints Committee.- (1) Every employer of a workplace shall, by an order in writing, constitute a Committee to be known as the \"Internal Complaints Committee\": Provided that where the offices or administrative units of the workplace are located at different places or divisional or sub-divisional level, the Internal Committee shall be constituted at",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "historical_death_2019",
+      "title": "Death before commencement under the 1972 Act",
+      "category": "historical_regime",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "gratuity1972-s1",
+          "gratuity1972-s4"
+        ],
+        "qualifier_provisions": [],
+        "relevant_provisions": [
+          "gratuity1972-s1",
+          "gratuity1972-s4"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "failed",
+            "status": "escalated",
+            "latency_ms": 16.86,
+            "claims": 4,
+            "claims_supported": 3,
+            "citation_ids": [
+              "gratuity1972-s4",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-1-first-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s54"
+            ],
+            "evidence_count": 6,
+            "issues": [
+              {
+                "claim_id": "clm_04",
+                "reason": "weak_passage_support",
+                "detail": "Only 12% of the claim's content words occur in the cited passage (minimum 18%).",
+                "suggested_query": "Payment of Gratuity Act 1972 section 4"
+              }
+            ],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": false,
+            "verification_match": false,
+            "groundedness": 0.75,
+            "context_relevance": 0.3333,
+            "context_recall": 0.5,
+            "faithfulness": 0.536,
+            "hallucination_rate": 0.25,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [
+              "gratuity1972-s1"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s54"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 16.86,
+            "claims": 4,
+            "claims_supported": 3,
+            "published_claims": 0,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": [
+              "weak_passage_support"
+            ]
+          },
+          "answer_excerpt": "**Summary**\n\nVerification did not pass (weak_passage_support). The draft is withheld and the request is escalated rather than published with an unsupported or incomplete proposition.\n\n\n**Next steps**\n\n- Do not publish the unverified draft; route it to counsel with the trace.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "Verification did not pass: weak_passage_support"
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 24.86,
+            "claims": 5,
+            "claims_supported": 5,
+            "citation_ids": [
+              "gratuity1972-s4",
+              "gratuity1972-s1",
+              "gratuity1972-s4",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-1-first-proviso",
+              "gratuity1972-s4",
+              "gratuity1972-s1",
+              "gratuity1972-s1",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 8,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.625,
+            "context_recall": 1.0,
+            "faithfulness": 0.618,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 24.86,
+            "claims": 5,
+            "claims_supported": 5,
+            "published_claims": 5,
+            "evidence_count": 8,
+            "citation_count": 4,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the requested date the Payment of Gratuity Act, 1972 governs. The cited provisions state the five-year continuous-service rule and the death or disablement exception.\n\n**Provisions considered**\n\n1. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease: Provided that the completion of continuous service of five years shall not be necessary where the termination of the employment of any employee is due to death or disablement: [Provided further that in the case of death of the employee, gratuity payable to him shall be paid to his nominee or, if no nomination has been made, to his heirs, and where any s",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "historical_below_5y",
+      "title": "Below five years before commencement",
+      "category": "historical_regime",
+      "expected": {
+        "route": "answer_with_citation",
+        "verification": "passed",
+        "required_provisions": [
+          "gratuity1972-s1",
+          "gratuity1972-s4"
+        ],
+        "qualifier_provisions": [],
+        "relevant_provisions": [
+          "gratuity1972-s1",
+          "gratuity1972-s4"
+        ]
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 17.23,
+            "claims": 3,
+            "claims_supported": 3,
+            "citation_ids": [
+              "gratuity1972-s4",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-6"
+            ],
+            "evidence_count": 6,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": false,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.3333,
+            "context_recall": 0.5,
+            "faithfulness": 0.6803,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 0.5,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [
+              "gratuity1972-s1"
+            ],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso",
+              "ssc2020-s53-6"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 17.23,
+            "claims": 3,
+            "claims_supported": 3,
+            "published_claims": 3,
+            "evidence_count": 6,
+            "citation_count": 2,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the requested date the Payment of Gratuity Act, 1972 governs. The cited provisions state the five-year continuous-service rule and the death or disablement exception.\n\n**Provisions considered**\n\n1. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease: Provided that the completion of continuous service of five years shall not be necessary where the termination of the employment of any employee is due to death or disablement: [Provided further that in the case of death of the employee, gratuity payable to him shall be paid to his nominee or, if no nomination has been made, to his heirs, and where any s",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "answer_with_citation",
+            "actual_verification": "passed",
+            "status": "completed",
+            "latency_ms": 22.75,
+            "claims": 4,
+            "claims_supported": 4,
+            "citation_ids": [
+              "gratuity1972-s4",
+              "gratuity1972-s1",
+              "gratuity1972-s4"
+            ],
+            "retrieved_ids": [
+              "ssc2020-s53-1",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-second-proviso",
+              "gratuity1972-s4",
+              "ssc2020-s53-1-first-proviso",
+              "gratuity1972-s1",
+              "gratuity1972-s1",
+              "gratuity1972-s4"
+            ],
+            "evidence_count": 8,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.625,
+            "context_recall": 1.0,
+            "faithfulness": 0.6531,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "ssc2020-s53-1",
+              "ssc2020-s53-1-first-proviso",
+              "ssc2020-s53-1-second-proviso"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 22.75,
+            "claims": 4,
+            "claims_supported": 4,
+            "published_claims": 4,
+            "evidence_count": 8,
+            "citation_count": 3,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nOn the requested date the Payment of Gratuity Act, 1972 governs. The cited provisions state the five-year continuous-service rule and the death or disablement exception.\n\n**Provisions considered**\n\n1. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"4. Payment of gratuity.-(1) Gratuity shall be payable to an employee on the termination of his employment after he has rendered continuous service for not less than five years,- (a) on his superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease:\"\n2. Payment of Gratuity Act, 1972, s. 4 — repealed (repealed with effect from 2025-11-20 by ssc2020). \"superannuation, or (b) on his retirement or resignation, or (c) on his death or disablement due to accident or disease: Provided that the completion of continuous service of five years shall not be necessary where the termination of the employment of any employee is due to death or disablement: [Provided further that in the case of death of the employee, gratuity payable to him shall be paid to his nominee or, if no nomination has been made, to his heirs, and where any s",
+          "route_basis": "Every operative claim cites a provision that is in force on the requested date."
+        }
+      }
+    },
+    {
+      "id": "termination_dispute",
+      "title": "Contested termination question",
+      "category": "escalation_boundary",
+      "expected": {
+        "route": "legal_counsel_review",
+        "verification": "passed",
+        "required_provisions": [],
+        "qualifier_provisions": [],
+        "relevant_provisions": []
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 10.32,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "ssc2020-s54",
+              "ssc2020-s70",
+              "gratuity1972-s2a",
+              "ssc2020-s68",
+              "gratuity1972-s2a",
+              "ssc2020-s60"
+            ],
+            "evidence_count": 6,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 1.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "ssc2020-s54",
+              "ssc2020-s60",
+              "ssc2020-s68",
+              "ssc2020-s70"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 10.32,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 1,
+            "evidence_count": 6,
+            "citation_count": 0,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request falls outside the indexed corpus and is escalated without a legal conclusion.\n\n\n**Analysis**\n\n- Escalation: The request does not identify a provision in the indexed corpus that answers it. The desk does not answer outside its indexed sources.\n\n**Next steps**\n\n- Route the request to employment counsel; do not answer from an unrelated provision.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "No indexed provision addresses the request."
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 13.27,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "ssc2020-s54",
+              "ssc2020-s70",
+              "gratuity1972-s2a",
+              "ssc2020-s68",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "ssc2020-s54",
+              "gratuity1972-s2a",
+              "gratuity1972-s2a",
+              "ssc2020-s68"
+            ],
+            "evidence_count": 10,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 1.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "gratuity1972-s2a",
+              "ssc2020-s54",
+              "ssc2020-s68",
+              "ssc2020-s70"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 13.27,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 1,
+            "evidence_count": 10,
+            "citation_count": 0,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request falls outside the indexed corpus and is escalated without a legal conclusion.\n\n\n**Analysis**\n\n- Escalation: The request does not identify a provision in the indexed corpus that answers it. The desk does not answer outside its indexed sources.\n\n**Next steps**\n\n- Route the request to employment counsel; do not answer from an unrelated provision.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "No indexed provision addresses the request."
+        }
+      }
+    },
+    {
+      "id": "pf_question",
+      "title": "Out-of-scope provident fund question",
+      "category": "out_of_scope",
+      "expected": {
+        "route": "legal_counsel_review",
+        "verification": "passed",
+        "required_provisions": [],
+        "qualifier_provisions": [],
+        "relevant_provisions": []
+      },
+      "variants": {
+        "v1": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 12.02,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s53-2",
+              "posh2013-s26",
+              "posh2013-s11",
+              "posh2013-s9",
+              "ssc2020-s60"
+            ],
+            "evidence_count": 6,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 1.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s11",
+              "posh2013-s26",
+              "posh2013-s9",
+              "ssc2020-s53-2",
+              "ssc2020-s60"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 12.02,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 1,
+            "evidence_count": 6,
+            "citation_count": 0,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request falls outside the indexed corpus and is escalated without a legal conclusion.\n\n\n**Analysis**\n\n- Escalation: The request does not identify a provision in the indexed corpus that answers it. The desk does not answer outside its indexed sources.\n\n**Next steps**\n\n- Route the request to employment counsel; do not answer from an unrelated provision.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "No indexed provision addresses the request."
+        },
+        "v2": {
+          "actual": {
+            "actual_route": "legal_counsel_review",
+            "actual_verification": "passed",
+            "status": "escalated",
+            "latency_ms": 11.99,
+            "claims": 1,
+            "claims_supported": 1,
+            "citation_ids": [],
+            "retrieved_ids": [
+              "ssc2020-s60",
+              "ssc2020-s53-2",
+              "posh2013-s26",
+              "posh2013-s11",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "ssc2020-s60",
+              "posh2013-s26",
+              "posh2013-s11",
+              "posh2013-s11",
+              "posh2013-s11"
+            ],
+            "evidence_count": 11,
+            "issues": [],
+            "degraded": false,
+            "loops": 0
+          },
+          "metrics": {
+            "success": true,
+            "route_match": true,
+            "verification_match": true,
+            "groundedness": 1.0,
+            "context_relevance": 0.0,
+            "context_recall": 1.0,
+            "faithfulness": 1.0,
+            "hallucination_rate": 0.0,
+            "citation_precision": 1.0,
+            "citation_recall": 1.0,
+            "qualifier_coverage": 1.0,
+            "expected_provisions_missing": [],
+            "unexpected_citations": [],
+            "irrelevant_retrieved": [
+              "posh2013-s11",
+              "posh2013-s26",
+              "ssc2020-s53-2",
+              "ssc2020-s60"
+            ],
+            "malformed_retrieval_ids": 0,
+            "latency_ms": 11.99,
+            "claims": 1,
+            "claims_supported": 1,
+            "published_claims": 1,
+            "evidence_count": 11,
+            "citation_count": 0,
+            "issue_reasons": []
+          },
+          "answer_excerpt": "**Summary**\n\nThe request falls outside the indexed corpus and is escalated without a legal conclusion.\n\n\n**Analysis**\n\n- Escalation: The request does not identify a provision in the indexed corpus that answers it. The desk does not answer outside its indexed sources.\n\n**Next steps**\n\n- Route the request to employment counsel; do not answer from an unrelated provision.\n\n**Scope**\n\nThis desk cites enacted provisions and applies them to the facts supplied. It does not determine disputed facts, decide a harassment complaint, or issue a legal opinion.\n\n> This is a cited compliance advisory, not legal advice or a legal opinion. A qualified professional must decide the matter.",
+          "route_basis": "No indexed provision addresses the request."
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "baseline": "v1",
+    "candidate": "v2",
+    "delta": {
+      "success_rate": 0.875,
+      "route_accuracy": 0.7917,
+      "verification_accuracy": 0.8333,
+      "groundedness": 0.0382,
+      "context_relevance": 0.0658,
+      "context_recall": 0.4785,
+      "citation_recall": 0.4785,
+      "qualifier_coverage": 0.6042,
+      "latency_p95_ms": 19.17
+    },
+    "escalation_delta": -19,
+    "interpretation": "v2 answers more cases with citations because it runs qualifier-aware retrieval and the verification loop; v1 is the single-pass baseline."
+  }
+}
