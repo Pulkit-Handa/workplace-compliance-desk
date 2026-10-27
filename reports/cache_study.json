@@ -1,0 +1,1168 @@
+{
+  "generated_at": "20261026T150102Z",
+  "base_url": "http://127.0.0.1:8000",
+  "requests": 20,
+  "miss": {
+    "n": 10,
+    "p50_wall_ms": 820.49,
+    "p95_wall_ms": 895.26,
+    "prompt_tokens": 57496,
+    "completion_tokens": 40,
+    "llm_calls": 40,
+    "cost_usd_total": 0.0086484,
+    "cost_usd_per_run": 0.00086484,
+    "cost_usd_per_100_runs": 0.086484
+  },
+  "hit": {
+    "n": 10,
+    "p50_wall_ms": 17.27,
+    "p95_wall_ms": 19.93,
+    "prompt_tokens_returned": 57496,
+    "completion_tokens_returned": 40,
+    "llm_calls_incremental": 0,
+    "cost_usd_incremental": 0.0,
+    "note": "Cached result echoes the original usage/cost metadata; cache hits make no provider calls."
+  },
+  "records": [
+    {
+      "case": 0,
+      "repeat": "miss",
+      "run_id": "run_1261b32621fc419aae41",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 946.08,
+      "usage": {
+        "prompt_tokens": 5817,
+        "completion_tokens": 4,
+        "total_tokens": 5821,
+        "cost_usd": 0.0008749500000000001,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 211.37,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2562,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003849,
+            "latency_ms": 194.19,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2687,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040365,
+            "latency_ms": 194.49,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.56,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 0,
+      "repeat": "hit",
+      "run_id": "run_8329a622efa74be08c3c",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 17.43,
+      "usage": {
+        "prompt_tokens": 5817,
+        "completion_tokens": 4,
+        "total_tokens": 5821,
+        "cost_usd": 0.0008749500000000001,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 211.37,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2562,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003849,
+            "latency_ms": 194.19,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2687,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040365,
+            "latency_ms": 194.49,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.56,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 1,
+      "repeat": "miss",
+      "run_id": "run_ab00a858d210430096d2",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 820.25,
+      "usage": {
+        "prompt_tokens": 5739,
+        "completion_tokens": 4,
+        "total_tokens": 5743,
+        "cost_usd": 0.00086325,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.66,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2557,
+            "completion_tokens": 1,
+            "cost_usd": 0.00038415,
+            "latency_ms": 193.79,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2614,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003927,
+            "latency_ms": 193.24,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.82,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 1,
+      "repeat": "hit",
+      "run_id": "run_2628eaf7ce7b42c59c61",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 18.09,
+      "usage": {
+        "prompt_tokens": 5739,
+        "completion_tokens": 4,
+        "total_tokens": 5743,
+        "cost_usd": 0.00086325,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.66,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2557,
+            "completion_tokens": 1,
+            "cost_usd": 0.00038415,
+            "latency_ms": 193.79,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2614,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003927,
+            "latency_ms": 193.24,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.82,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 2,
+      "repeat": "miss",
+      "run_id": "run_ea640a2c9c2947fca5c6",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 818.09,
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 4,
+        "total_tokens": 5795,
+        "cost_usd": 0.00087105,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.24,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2538,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003813,
+            "latency_ms": 195.62,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2685,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040335,
+            "latency_ms": 195.18,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.08,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 2,
+      "repeat": "hit",
+      "run_id": "run_0f03da3258ef49c9835f",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 16.21,
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 4,
+        "total_tokens": 5795,
+        "cost_usd": 0.00087105,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.24,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2538,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003813,
+            "latency_ms": 195.62,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2685,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040335,
+            "latency_ms": 195.18,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.08,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 3,
+      "repeat": "miss",
+      "run_id": "run_7cc0e1bf3e054e82b980",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 823.01,
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 4,
+        "total_tokens": 5795,
+        "cost_usd": 0.00087105,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.83,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2583,
+            "completion_tokens": 1,
+            "cost_usd": 0.00038805,
+            "latency_ms": 194.86,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2640,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003966,
+            "latency_ms": 195.15,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.57,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 3,
+      "repeat": "hit",
+      "run_id": "run_aab0c8b545a14c6eb1d1",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 16.85,
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 4,
+        "total_tokens": 5795,
+        "cost_usd": 0.00087105,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.83,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2583,
+            "completion_tokens": 1,
+            "cost_usd": 0.00038805,
+            "latency_ms": 194.86,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2640,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003966,
+            "latency_ms": 195.15,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.57,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 4,
+      "repeat": "miss",
+      "run_id": "run_764f285db1e144b5adf2",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 821.73,
+      "usage": {
+        "prompt_tokens": 5707,
+        "completion_tokens": 4,
+        "total_tokens": 5711,
+        "cost_usd": 0.00085845,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.17,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2471,
+            "completion_tokens": 1,
+            "cost_usd": 0.00037125,
+            "latency_ms": 194.13,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2668,
+            "completion_tokens": 1,
+            "cost_usd": 0.0004008,
+            "latency_ms": 194.97,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 195.1,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 4,
+      "repeat": "hit",
+      "run_id": "run_0890e5dc5e0f48389a12",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 16.31,
+      "usage": {
+        "prompt_tokens": 5707,
+        "completion_tokens": 4,
+        "total_tokens": 5711,
+        "cost_usd": 0.00085845,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.17,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2471,
+            "completion_tokens": 1,
+            "cost_usd": 0.00037125,
+            "latency_ms": 194.13,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2668,
+            "completion_tokens": 1,
+            "cost_usd": 0.0004008,
+            "latency_ms": 194.97,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 195.1,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 5,
+      "repeat": "miss",
+      "run_id": "run_5e55eda5babd4176b2b9",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 833.14,
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 4,
+        "total_tokens": 5795,
+        "cost_usd": 0.00087105,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 153.47,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2538,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003813,
+            "latency_ms": 194.64,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2685,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040335,
+            "latency_ms": 197.11,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.57,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 5,
+      "repeat": "hit",
+      "run_id": "run_bfae0975a0014ffeb859",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 18.58,
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 4,
+        "total_tokens": 5795,
+        "cost_usd": 0.00087105,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 153.47,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2538,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003813,
+            "latency_ms": 194.64,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2685,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040335,
+            "latency_ms": 197.11,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 194.57,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 6,
+      "repeat": "miss",
+      "run_id": "run_3bb28fd96cff4d41905c",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 811.64,
+      "usage": {
+        "prompt_tokens": 5643,
+        "completion_tokens": 4,
+        "total_tokens": 5647,
+        "cost_usd": 0.00084885,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 153.4,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2456,
+            "completion_tokens": 1,
+            "cost_usd": 0.000369,
+            "latency_ms": 193.06,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2619,
+            "completion_tokens": 1,
+            "cost_usd": 0.00039345,
+            "latency_ms": 193.6,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.48,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 6,
+      "repeat": "hit",
+      "run_id": "run_fd55f1f59d0d49688190",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 16.11,
+      "usage": {
+        "prompt_tokens": 5643,
+        "completion_tokens": 4,
+        "total_tokens": 5647,
+        "cost_usd": 0.00084885,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 153.4,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2456,
+            "completion_tokens": 1,
+            "cost_usd": 0.000369,
+            "latency_ms": 193.06,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2619,
+            "completion_tokens": 1,
+            "cost_usd": 0.00039345,
+            "latency_ms": 193.6,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.48,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 7,
+      "repeat": "miss",
+      "run_id": "run_cea99799d6c543bf98b5",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 818.19,
+      "usage": {
+        "prompt_tokens": 5810,
+        "completion_tokens": 4,
+        "total_tokens": 5814,
+        "cost_usd": 0.0008739,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.73,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2556,
+            "completion_tokens": 1,
+            "cost_usd": 0.000384,
+            "latency_ms": 193.64,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2686,
+            "completion_tokens": 1,
+            "cost_usd": 0.0004035,
+            "latency_ms": 193.97,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.94,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 7,
+      "repeat": "hit",
+      "run_id": "run_039461425035472b8417",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 19.05,
+      "usage": {
+        "prompt_tokens": 5810,
+        "completion_tokens": 4,
+        "total_tokens": 5814,
+        "cost_usd": 0.0008739,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.73,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2556,
+            "completion_tokens": 1,
+            "cost_usd": 0.000384,
+            "latency_ms": 193.64,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2686,
+            "completion_tokens": 1,
+            "cost_usd": 0.0004035,
+            "latency_ms": 193.97,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.94,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 8,
+      "repeat": "miss",
+      "run_id": "run_9f7937f705cb43a0bce5",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 820.72,
+      "usage": {
+        "prompt_tokens": 5787,
+        "completion_tokens": 4,
+        "total_tokens": 5791,
+        "cost_usd": 0.0008704499999999999,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 153.6,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2538,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003813,
+            "latency_ms": 194.27,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2681,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040275,
+            "latency_ms": 193.42,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.72,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 8,
+      "repeat": "hit",
+      "run_id": "run_1d2942858d6747c69141",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 20.65,
+      "usage": {
+        "prompt_tokens": 5787,
+        "completion_tokens": 4,
+        "total_tokens": 5791,
+        "cost_usd": 0.0008704499999999999,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 153.6,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2538,
+            "completion_tokens": 1,
+            "cost_usd": 0.0003813,
+            "latency_ms": 194.27,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2681,
+            "completion_tokens": 1,
+            "cost_usd": 0.00040275,
+            "latency_ms": 193.42,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.72,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 9,
+      "repeat": "miss",
+      "run_id": "run_491c29ee20d64a5d84f8",
+      "status": "completed",
+      "cached": false,
+      "wall_ms": 812.42,
+      "usage": {
+        "prompt_tokens": 5620,
+        "completion_tokens": 4,
+        "total_tokens": 5624,
+        "cost_usd": 0.0008454,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.33,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2459,
+            "completion_tokens": 1,
+            "cost_usd": 0.00036945,
+            "latency_ms": 194.77,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2593,
+            "completion_tokens": 1,
+            "cost_usd": 0.00038955,
+            "latency_ms": 193.89,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.51,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    },
+    {
+      "case": 9,
+      "repeat": "hit",
+      "run_id": "run_301902ae4d3a43d5a853",
+      "status": "completed",
+      "cached": true,
+      "wall_ms": 17.11,
+      "usage": {
+        "prompt_tokens": 5620,
+        "completion_tokens": 4,
+        "total_tokens": 5624,
+        "cost_usd": 0.0008454,
+        "llm_calls": 4,
+        "per_step": [
+          {
+            "step": "intake",
+            "prompt_tokens": 270,
+            "completion_tokens": 1,
+            "cost_usd": 4.11e-05,
+            "latency_ms": 154.33,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "intake-v2"
+          },
+          {
+            "step": "draft",
+            "prompt_tokens": 2459,
+            "completion_tokens": 1,
+            "cost_usd": 0.00036945,
+            "latency_ms": 194.77,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "draft-v2"
+          },
+          {
+            "step": "verify",
+            "prompt_tokens": 2593,
+            "completion_tokens": 1,
+            "cost_usd": 0.00038955,
+            "latency_ms": 193.89,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "verify-v2"
+          },
+          {
+            "step": "route",
+            "prompt_tokens": 298,
+            "completion_tokens": 1,
+            "cost_usd": 4.53e-05,
+            "latency_ms": 193.51,
+            "provider": "stub_http",
+            "model": "stub-compliance-1",
+            "prompt_version": "route-v2"
+          }
+        ]
+      }
+    }
+  ]
+}
