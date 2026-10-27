@@ -1,0 +1,28 @@
+services:
+  api:
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai_compatible}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://generativelanguage.googleapis.com/v1beta/openai}
+      LLM_API_KEY: ${LLM_API_KEY:?Set LLM_API_KEY in .env}
+      LLM_MODEL: ${LLM_MODEL:-gemini-3.5-flash-lite}
+      LLM_TIMEOUT_S: ${LLM_TIMEOUT_S:-8}
+      LLM_MAX_RETRIES: ${LLM_MAX_RETRIES:-2}
+      LLM_RETRY_BASE_S: ${LLM_RETRY_BASE_S:-0.25}
+      LLM_INPUT_COST_PER_MTOK: ${LLM_INPUT_COST_PER_MTOK:-0.30}
+      LLM_OUTPUT_COST_PER_MTOK: ${LLM_OUTPUT_COST_PER_MTOK:-2.50}
+      CIRCUIT_BREAKER_THRESHOLD: ${CIRCUIT_BREAKER_THRESHOLD:-5}
+      CIRCUIT_BREAKER_COOLDOWN_S: ${CIRCUIT_BREAKER_COOLDOWN_S:-30}
+
+  worker:
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai_compatible}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://generativelanguage.googleapis.com/v1beta/openai}
+      LLM_API_KEY: ${LLM_API_KEY:?Set LLM_API_KEY in .env}
+      LLM_MODEL: ${LLM_MODEL:-gemini-3.5-flash-lite}
+      LLM_TIMEOUT_S: ${LLM_TIMEOUT_S:-8}
+      LLM_MAX_RETRIES: ${LLM_MAX_RETRIES:-2}
+      LLM_RETRY_BASE_S: ${LLM_RETRY_BASE_S:-0.25}
+      LLM_INPUT_COST_PER_MTOK: ${LLM_INPUT_COST_PER_MTOK:-0.30}
+      LLM_OUTPUT_COST_PER_MTOK: ${LLM_OUTPUT_COST_PER_MTOK:-2.50}
+      CIRCUIT_BREAKER_THRESHOLD: ${CIRCUIT_BREAKER_THRESHOLD:-5}
+      CIRCUIT_BREAKER_COOLDOWN_S: ${CIRCUIT_BREAKER_COOLDOWN_S:-30}
