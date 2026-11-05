@@ -33,7 +33,12 @@ from compliance.llm.factory import get_llm_client
 from compliance.llm.prompts import PromptRegistry
 from compliance.logging_setup import configure_logging, get_logger, log_context
 from compliance.observability import metrics
-from compliance.observability.tracing import instrument_fastapi, setup_tracing
+from compliance.observability.tracing import (
+    instrument_fastapi,
+    instrument_httpx,
+    instrument_redis,
+    setup_tracing,
+)
 from compliance.service.cache import RunCache, make_cache
 from compliance.service.queue import QueueEntry, RunQueue, make_queue
 from compliance.service.ratelimit import make_limiter
@@ -531,6 +536,8 @@ def create_app(
         }
 
     instrument_fastapi(app)
+    instrument_httpx()
+    instrument_redis()
     return app
 
 

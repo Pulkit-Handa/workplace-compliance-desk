@@ -21,6 +21,11 @@ from compliance.llm.base import LLMClient
 from compliance.llm.factory import get_llm_client
 from compliance.logging_setup import configure_logging, get_logger, log_context
 from compliance.observability import metrics
+from compliance.observability.tracing import (
+    instrument_httpx,
+    instrument_redis,
+    setup_tracing,
+)
 from compliance.service.cache import RunCache, make_cache
 from compliance.service.queue import QueueEntry, RedisStreamQueue, RunQueue
 from compliance.service.runner import execute_run
@@ -152,6 +157,9 @@ async def build_worker() -> tuple[Worker, RunStore, RunCache, IndexStore]:
 
 async def main() -> None:
     settings.ensure_dirs()
+    setup_tracing(settings.service_name)
+    instrument_httpx()
+    instrument_redis()
     worker, store, cache, index = await build_worker()
     with contextlib.suppress(OSError):
         start_http_server(settings.worker_metrics_port)
